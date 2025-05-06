@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     display: "flex",
     flexDirection: "column",
+    backgroundColor: "red",
     height: "100%",
     justifyContent: "center",
     alignItems: "center",

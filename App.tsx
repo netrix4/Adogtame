@@ -1,9 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StyleSheet, Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import Home from "./Screens/Home";
+import { StyleSheet, Platform } from "react-native";
 import Login from "./Screens/Login";
-import Profile from "./Screens/Profile";
+import DashBoard from "./Screens/DashBoard";
 
 export default function App() {
   const stack = createNativeStackNavigator();
@@ -27,8 +26,7 @@ export default function App() {
         }}
       >
         <stack.Screen name="Login" component={Login} />
-        <stack.Screen name="Profile" component={Profile} />
-        <stack.Screen name="Home" component={Home} />
+        <stack.Screen name="DashBoard" component={DashBoard} />
       </stack.Navigator>
     </NavigationContainer>
   );

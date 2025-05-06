@@ -26,16 +26,14 @@ export default function Login() {
         <Text style={styles.texts}>Password</Text>
         <TextInput
           placeholder="password"
-          passwordRules="minlength: 20; required: lower; required: upper; required: digit; required: [-];"
+          // passwordRules="minlength: 20; required: lower; required: upper; required: digit; required: [-];"
           style={styles.userNameInput}
-          accessibilityHint="asdasdas"
-          autoFocus={true}
           clearButtonMode="while-editing"
         ></TextInput>
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Home");
+            navigation.navigate("DashBoard");
           }}
         >
           <Text style={styles.texts}>Go Home</Text>
@@ -46,9 +44,6 @@ export default function Login() {
 }
 const fontSizes = 20;
 const styles = StyleSheet.create({
-  root: {
-    color: "white",
-  },
   texts: {
     fontSize: fontSizes,
   },
