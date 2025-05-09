@@ -1,62 +1,34 @@
-import {
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  SafeAreaView,
-  View,
-  TextInput,
-} from "react-native";
+import { StyleSheet, SafeAreaView, View, Image } from "react-native";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import LoginInputs from "../Components/LoginInputs";
 
 export default function Login() {
-  const navigation = useNavigation();
   return (
     <SafeAreaView>
       <View style={styles.mainContainer}>
-        <Text style={styles.texts}>Login</Text>
-        <Text style={styles.texts}>Username</Text>
-        <TextInput
-          placeholder="username"
-          style={styles.userNameInput}
-          accessibilityHint="asdasdas"
-          autoFocus={true}
-          clearButtonMode="while-editing"
-        ></TextInput>
-        <Text style={styles.texts}>Password</Text>
-        <TextInput
-          placeholder="password"
-          // passwordRules="minlength: 20; required: lower; required: upper; required: digit; required: [-];"
-          style={styles.userNameInput}
-          clearButtonMode="while-editing"
-        ></TextInput>
-
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("DashBoard");
-          }}
-        >
-          <Text style={styles.texts}>Go Home</Text>
-        </TouchableOpacity>
+        <Image
+          style={styles.mainImage}
+          source={require("../assets/Original.jpg")}
+        />
+        <LoginInputs />
       </View>
     </SafeAreaView>
   );
 }
-const fontSizes = 20;
 const styles = StyleSheet.create({
-  texts: {
-    fontSize: fontSizes,
+  mainImage: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
   },
   mainContainer: {
     display: "flex",
+    // flex: 1,
     flexDirection: "column",
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-  },
-  userNameInput: {
-    width: "65%",
-    backgroundColor: "lightgrey",
-    fontSize: fontSizes,
+    gap: 30,
+    // marginVertical: 10,
   },
 });
