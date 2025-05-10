@@ -7,9 +7,9 @@ import {
   Platform,
 } from "react-native";
 import React from "react";
-import LoginInputs from "../Components/LoginInputs";
+import RecoverInputs from "../Components/RecoverInputs";
 
-export default function Login() {
+export default function RecoverPass() {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -21,7 +21,7 @@ export default function Login() {
             style={styles.mainImage}
             source={require("../assets/Original.jpg")}
           />
-          <LoginInputs />
+          <RecoverInputs />
         </View>
       </SafeAreaView>
     </KeyboardAvoidingView>

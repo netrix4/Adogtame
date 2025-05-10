@@ -9,38 +9,87 @@ import {
 import React, { useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-export default function LoginInputs() {
+export default function RegisterInputs() {
   const navigation = useNavigation();
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
 
   const firstInputRef = useRef(null);
   const secondInputRef = useRef(null);
+  const thirdInputRef = useRef(null);
+  const fourthInputRef = useRef(null);
+  const fifthInputRef = useRef(null);
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.mainTitleText}>Adogtame 🐾</Text>
       <View style={styles.inputsContainer}>
         <View style={styles.emailGeneralContainer}>
-          <Text style={styles.texts}>Correo Electronico</Text>
+          <Text style={styles.texts}>Nombre</Text>
           <View style={styles.emailContainer}>
             <TextInput
               ref={firstInputRef}
               returnKeyType="next"
               onSubmitEditing={() => secondInputRef?.current?.focus()}
-              placeholder="ejemplo@gmail.com"
-              textContentType="emailAddress"
-              keyboardType="email-address"
+              placeholder="nombre completo"
+              textContentType="name"
+              keyboardType="name-phone-pad"
               style={styles.emailInput}
-              autoFocus={true}
               clearButtonMode="while-editing"
             />
           </View>
         </View>
+        <View style={styles.emailGeneralContainer}>
+          <Text style={styles.texts}>Número de celular</Text>
+          <View style={styles.emailContainer}>
+            <TextInput
+              ref={secondInputRef}
+              returnKeyType="next"
+              onSubmitEditing={() => thirdInputRef?.current?.focus()}
+              placeholder="10[0-9]"
+              textContentType="telephoneNumber"
+              keyboardType="number-pad"
+              style={styles.emailInput}
+              clearButtonMode="while-editing"
+            />
+          </View>
+        </View>
+        <View style={styles.emailGeneralContainer}>
+          <Text style={styles.texts}>Correo Electronico</Text>
+          <View style={styles.emailContainer}>
+            <TextInput
+              ref={thirdInputRef}
+              returnKeyType="next"
+              onSubmitEditing={() => fourthInputRef?.current?.focus()}
+              placeholder="ejemplo@gmail.com"
+              textContentType="emailAddress"
+              keyboardType="email-address"
+              style={styles.emailInput}
+              clearButtonMode="while-editing"
+            />
+          </View>
+        </View>
+
+        <View style={styles.emailGeneralContainer}>
+          <Text style={styles.texts}>Dirección</Text>
+          <View style={styles.emailContainer}>
+            <TextInput
+              ref={fourthInputRef}
+              returnKeyType="next"
+              onSubmitEditing={() => fifthInputRef?.current?.focus()}
+              placeholder="calle, num, colonia, ciudad"
+              textContentType="addressCity"
+              keyboardType="default"
+              style={styles.emailInput}
+              clearButtonMode="while-editing"
+            />
+          </View>
+        </View>
+
         <View style={styles.passwordGeneralContainer}>
           <Text style={styles.texts}>Contraseña</Text>
           <View style={styles.passwordContainers}>
             <TextInput
-              ref={secondInputRef}
+              ref={fifthInputRef}
               returnKeyType="done"
               secureTextEntry={hidePassword}
               placeholder="contraseña"
@@ -61,15 +110,6 @@ export default function LoginInputs() {
               />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            style={styles.recoverTextsContainer}
-            onPress={() => navigation.navigate("Recover")}
-          >
-            <Text style={styles.recoverTexts}>
-              ¿Olvidaste tu contraseña?
-              <Text style={{ fontWeight: "bold" }}> Recupérala</Text>
-            </Text>
-          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.loginButtonContainer}>
@@ -79,18 +119,7 @@ export default function LoginInputs() {
           }}
           style={styles.loginButton}
         >
-          <Text style={styles.loginText}>Iniciar sesión</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.recoverTextsContainer}
-          onPress={() => {
-            navigation.navigate("Register");
-          }}
-        >
-          <Text style={styles.recoverTexts}>
-            ¿No tienes una cuenta?
-            <Text style={{ fontWeight: "bold" }}> Regístrate</Text>
-          </Text>
+          <Text style={styles.loginText}>Registrarse</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -116,7 +145,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     width: "65%",
-    gap: 30,
+    gap: 20,
   },
   emailGeneralContainer: {
     display: "flex",

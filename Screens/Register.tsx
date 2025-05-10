@@ -7,7 +7,7 @@ import {
   Platform,
 } from "react-native";
 import React from "react";
-import LoginInputs from "../Components/LoginInputs";
+import RegisterInputs from "../Components/RegisterInputs";
 
 export default function Login() {
   return (
@@ -21,7 +21,7 @@ export default function Login() {
             style={styles.mainImage}
             source={require("../assets/Original.jpg")}
           />
-          <LoginInputs />
+          <RegisterInputs />
         </View>
       </SafeAreaView>
     </KeyboardAvoidingView>
