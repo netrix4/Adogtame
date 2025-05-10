@@ -5,12 +5,16 @@ import {
   TouchableOpacity,
   View,
   TextInput,
+  Modal,
+  SafeAreaView,
 } from "react-native";
 import React, { useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
+import Login from "../Screens/Login";
 
 export default function RegisterInputs() {
   const navigation = useNavigation();
+  const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
 
@@ -115,13 +119,33 @@ export default function RegisterInputs() {
       <View style={styles.loginButtonContainer}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("DashBoard");
+            // navigation.navigate("DashBoard");
+            setShowModal(!showModal);
           }}
           style={styles.loginButton}
         >
           <Text style={styles.loginText}>Registrarse</Text>
         </TouchableOpacity>
       </View>
+      <Modal visible={showModal} transparent={true} animationType="fade">
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.acceptText}>
+              Se ha enviado una confirmacion al correo porporcionado. Favor de
+              revisarlo
+            </Text>
+            <TouchableOpacity
+              style={styles.acceptButton}
+              onPress={() => {
+                setShowModal(false);
+                navigation.navigate("Login");
+              }}
+            >
+              <Text style={styles.acceptButtonText}>Aceptar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -218,5 +242,36 @@ const styles = StyleSheet.create({
   },
   passwordEye: {
     width: "10%",
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // opcional para oscurecer fondo
+  },
+  modalContent: {
+    width: "80%",
+    padding: 30,
+    backgroundColor: "white",
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 15,
+  },
+
+  acceptText: {
+    fontSize: fontSizes * 1.1,
+    textAlign: "center",
+  },
+  acceptButton: {
+    backgroundColor: "#F28C28",
+    width: "70%",
+    alignItems: "center",
+    borderRadius: 5,
+    paddingVertical: 8,
+  },
+  acceptButtonText: {
+    color: "white",
+    fontSize: fontSizes,
   },
 });
