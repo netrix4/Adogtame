@@ -6,14 +6,17 @@ import {
   View,
   TextInput,
   Modal,
+  Alert,
 } from "react-native";
 import React, { useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { supabase } from "../lib/supabase";
 
 export default function RegisterInputs() {
   const navigation = useNavigation();
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
 
   const firstInputRef = useRef(null);
@@ -21,6 +24,20 @@ export default function RegisterInputs() {
   const thirdInputRef = useRef(null);
   const fourthInputRef = useRef(null);
   const fifthInputRef = useRef(null);
+
+  const handleRegister = async () => {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) {
+      Alert.alert("Error al registrar", error.message);
+    } else {
+      setShowModal(true);
+    }
+  };
+
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.mainTitleText}>Adogtame 🐾</Text>
@@ -32,10 +49,7 @@ export default function RegisterInputs() {
             returnKeyType="next"
             onSubmitEditing={() => secondInputRef?.current?.focus()}
             placeholder="nombre completo"
-            textContentType="name"
-            keyboardType="name-phone-pad"
             style={styles.emailInput}
-            clearButtonMode="while-editing"
           />
         </View>
         <View style={styles.emailGeneralContainer}>
@@ -44,28 +58,24 @@ export default function RegisterInputs() {
             ref={secondInputRef}
             returnKeyType="next"
             onSubmitEditing={() => thirdInputRef?.current?.focus()}
-            placeholder="10[0-9]"
-            textContentType="telephoneNumber"
+            placeholder="10 dígitos"
             keyboardType="number-pad"
             style={styles.emailInput}
-            clearButtonMode="while-editing"
           />
         </View>
         <View style={styles.emailGeneralContainer}>
-          <Text style={styles.texts}>Correo Electronico</Text>
-
+          <Text style={styles.texts}>Correo Electrónico</Text>
           <TextInput
             ref={thirdInputRef}
             returnKeyType="next"
             onSubmitEditing={() => fourthInputRef?.current?.focus()}
             placeholder="ejemplo@gmail.com"
-            textContentType="emailAddress"
             keyboardType="email-address"
+            onChangeText={setEmail}
+            value={email}
             style={styles.emailInput}
-            clearButtonMode="while-editing"
           />
         </View>
-
         <View style={styles.emailGeneralContainer}>
           <Text style={styles.texts}>Dirección</Text>
           <TextInput
@@ -73,13 +83,9 @@ export default function RegisterInputs() {
             returnKeyType="next"
             onSubmitEditing={() => fifthInputRef?.current?.focus()}
             placeholder="calle, num, colonia, ciudad"
-            textContentType="addressCity"
-            keyboardType="default"
             style={styles.emailInput}
-            clearButtonMode="while-editing"
           />
         </View>
-
         <View style={styles.passwordGeneralContainer}>
           <Text style={styles.texts}>Contraseña</Text>
           <TextInput
@@ -87,8 +93,6 @@ export default function RegisterInputs() {
             returnKeyType="done"
             secureTextEntry={hidePassword}
             placeholder="contraseña"
-            textContentType="password"
-            keyboardType="default"
             value={password}
             onChangeText={setPassword}
             style={styles.emailInput}
@@ -100,35 +104,30 @@ export default function RegisterInputs() {
             <Ionicons
               name={hidePassword ? "eye" : "eye-off"}
               color={"black"}
-              size={fontSizes}
+              size={20}
             />
           </TouchableOpacity>
         </View>
       </View>
+
       <View style={styles.loginButtonContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            setShowModal(!showModal);
-          }}
-          style={styles.loginButton}
-        >
+        <TouchableOpacity onPress={handleRegister} style={styles.loginButton}>
           <Text style={styles.loginText}>Registrarse</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.recoverTextsContainer}
-          onPress={() => {
-            navigation.goBack();
-          }}
+          onPress={() => navigation.goBack()}
         >
           <Text style={{ fontWeight: "bold" }}> Volver</Text>
         </TouchableOpacity>
       </View>
-      <Modal visible={showModal} transparent={true} animationType="fade">
+
+      <Modal visible={showModal} transparent animationType="fade">
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <Text style={styles.acceptText}>
-              Se ha enviado una confirmacion al correo porporcionado. Favor de
-              revisarlo
+              Se ha enviado una confirmación al correo proporcionado. Favor de
+              revisarlo.
             </Text>
             <TouchableOpacity
               style={styles.acceptButton}
