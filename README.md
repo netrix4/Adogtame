@@ -8,9 +8,15 @@ ReactNative app for dog adoptions
 >How to download the sdk 53 version to 52
 >Run the following commands
 ``npm install expo@52`` 
+
 ``npm expo install --fix``
+
 ``npm install --force``
+
 ``npm expo install --fix``
+
 ``npm uninstall @types/react``
+
 ``npm install -D @types/react@~18.3.12``
+
 ``npm expo install --fix`` 
