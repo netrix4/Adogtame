@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     fontSize: fontSizes,
-    marginVertical: 5,
-    backgroundColor: "white",
+    paddingVertical: 5,
+    width: "90%",
   },
 });
