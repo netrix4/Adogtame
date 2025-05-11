@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    gap: 15,
   },
   mainTitleContainer: {
     display: "flex",

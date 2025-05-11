@@ -9,7 +9,7 @@ export default function Home() {
       <FlatList
         style={styles.mainContainer}
         contentContainerStyle={styles.flatListContentStyle}
-        ListHeaderComponent={<ListHeaderHome />}
+        ListHeaderComponent={ListHeaderHome}
         data={Array(10)}
         renderItem={(item) => <AnimalCard />}
       />

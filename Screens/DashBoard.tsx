@@ -5,12 +5,27 @@ import Home from "../Components/Home";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { BlurView } from "expo-blur";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
 export default function DashBoard() {
-  const iconSizes = 30;
+  const IsSelectedTabBarIcon = ({ iconName, isFocused }: any) => {
+    if (!isFocused) {
+      return (
+        // /**the not selected component*/
+        <Ionicons name={iconName} color={"#33658A"} size={iconSizes} />
+      );
+    } else {
+      // the selected icon component
+      return (
+        <View style={styles.selectedIcon}>
+          <Ionicons name={iconName} color={"#F28C28"} size={iconSizes} />
+        </View>
+      );
+    }
+  };
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -31,8 +46,8 @@ export default function DashBoard() {
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: () => (
-            <Ionicons name="home-outline" color={"#33658A"} size={iconSizes} />
+          tabBarIcon: ({ focused }: any) => (
+            <IsSelectedTabBarIcon iconName="home-outline" isFocused={focused} />
           ),
         }}
       />
@@ -40,8 +55,11 @@ export default function DashBoard() {
         name="Favorites"
         component={Favorites}
         options={{
-          tabBarIcon: () => (
-            <Ionicons name="heart-outline" color={"#33658A"} size={iconSizes} />
+          tabBarIcon: ({ focused }: any) => (
+            <IsSelectedTabBarIcon
+              iconName="heart-outline"
+              isFocused={focused}
+            />
           ),
         }}
       />
@@ -49,11 +67,10 @@ export default function DashBoard() {
         name="Profile"
         component={Profile}
         options={{
-          tabBarIcon: () => (
-            <Ionicons
-              name="person-outline"
-              color={"#33658A"}
-              size={iconSizes}
+          tabBarIcon: ({ focused }: any) => (
+            <IsSelectedTabBarIcon
+              iconName="person-outline"
+              isFocused={focused}
             />
           ),
         }}
@@ -61,10 +78,21 @@ export default function DashBoard() {
     </Tab.Navigator>
   );
 }
+const iconSizes = 30;
 
 const styles = StyleSheet.create({
   tabBarPosAbsolute: {
     position: "absolute",
     backgroundColor: "#F28C28",
+  },
+  selectedIcon: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#33658A",
+    borderRadius: iconSizes * 0.3,
+    width: iconSizes * 1.2,
+    height: iconSizes * 1.2,
   },
 });
