@@ -23,4 +23,4 @@ ReactNative app for dog adoptions
 ``npm expo install --fix`` 
 
 ### Install Supabase in the project
-> ``npm install @supabase/supabase-js``
+ ``npm install @supabase/supabase-js``
