@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Profile from "../Components/Profile";
+import Favorites from "../Components/Favorites";
 import Home from "../Components/Home";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -9,6 +10,7 @@ import { StyleSheet } from "react-native";
 const Tab = createBottomTabNavigator();
 
 export default function DashBoard() {
+  const iconSizes = 30;
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -19,7 +21,7 @@ export default function DashBoard() {
         tabBarBackground: () => (
           <BlurView
             tint="light"
-            intensity={100}
+            intensity={1000}
             style={StyleSheet.absoluteFill}
           />
         ),
@@ -29,7 +31,18 @@ export default function DashBoard() {
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: () => <Ionicons name="home" color={"purple"} size={25} />,
+          tabBarIcon: () => (
+            <Ionicons name="home-outline" color={"#33658A"} size={iconSizes} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favorites"
+        component={Favorites}
+        options={{
+          tabBarIcon: () => (
+            <Ionicons name="heart-outline" color={"#33658A"} size={iconSizes} />
+          ),
         }}
       />
       <Tab.Screen
@@ -37,7 +50,11 @@ export default function DashBoard() {
         component={Profile}
         options={{
           tabBarIcon: () => (
-            <Ionicons name="person" color={"purple"} size={25} />
+            <Ionicons
+              name="person-outline"
+              color={"#33658A"}
+              size={iconSizes}
+            />
           ),
         }}
       />
@@ -46,5 +63,8 @@ export default function DashBoard() {
 }
 
 const styles = StyleSheet.create({
-  tabBarPosAbsolute: { position: "absolute" },
+  tabBarPosAbsolute: {
+    position: "absolute",
+    backgroundColor: "#F28C28",
+  },
 });

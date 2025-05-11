@@ -4,10 +4,12 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
+  Image,
   TextInput,
 } from "react-native";
 import React, { useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
+import adogtameIcon from "../assets/Original.jpg";
 
 export default function LoginInputs() {
   const navigation = useNavigation();
@@ -18,92 +20,86 @@ export default function LoginInputs() {
   const secondInputRef = useRef(null);
   return (
     <View style={styles.mainContainer}>
+      <Image style={styles.mainImage} source={adogtameIcon} />
       <Text style={styles.mainTitleText}>Adogtame 🐾</Text>
       <View style={styles.inputsContainer}>
         <View style={styles.emailGeneralContainer}>
           <Text style={styles.texts}>Correo Electronico</Text>
-          <View style={styles.emailContainer}>
-            <TextInput
-              ref={firstInputRef}
-              returnKeyType="next"
-              onSubmitEditing={() => secondInputRef?.current?.focus()}
-              placeholder="ejemplo@gmail.com"
-              textContentType="emailAddress"
-              keyboardType="email-address"
-              style={styles.emailInput}
-              autoFocus={true}
-              clearButtonMode="while-editing"
-            />
-          </View>
+
+          <TextInput
+            ref={firstInputRef}
+            returnKeyType="next"
+            onSubmitEditing={() => secondInputRef?.current?.focus()}
+            placeholder="ejemplo@gmail.com"
+            textContentType="emailAddress"
+            keyboardType="email-address"
+            style={styles.emailInput}
+            clearButtonMode="while-editing"
+          />
         </View>
+
         <View style={styles.passwordGeneralContainer}>
           <Text style={styles.texts}>Contraseña</Text>
-          <View style={styles.passwordContainers}>
-            <TextInput
-              ref={secondInputRef}
-              returnKeyType="done"
-              secureTextEntry={hidePassword}
-              placeholder="contraseña"
-              textContentType="password"
-              keyboardType="visible-password"
-              value={password}
-              onChangeText={setPassword}
-              style={styles.passwordInput}
-            />
-            <TouchableOpacity
-              onPress={() => setHidePassword(!hidePassword)}
-              style={styles.passwordEye}
-            >
-              <Ionicons
-                name={hidePassword ? "eye" : "eye-off"}
-                color={"black"}
-                size={fontSizes}
-              />
-            </TouchableOpacity>
-          </View>
+          <TextInput
+            ref={secondInputRef}
+            returnKeyType="done"
+            secureTextEntry={hidePassword}
+            placeholder="contraseña"
+            textContentType="password"
+            keyboardType="default"
+            value={password}
+            onChangeText={setPassword}
+            style={styles.emailInput}
+          />
           <TouchableOpacity
-            style={styles.recoverTextsContainer}
-            onPress={() => navigation.navigate("Recover")}
+            onPress={() => setHidePassword(!hidePassword)}
+            style={styles.passwordEye}
           >
-            <Text style={styles.recoverTexts}>
-              ¿Olvidaste tu contraseña?
-              <Text style={{ fontWeight: "bold" }}> Recupérala</Text>
-            </Text>
+            <Ionicons
+              name={hidePassword ? "eye" : "eye-off"}
+              color={"black"}
+              size={fontSizes}
+            />
           </TouchableOpacity>
         </View>
+        <TouchableOpacity
+          style={styles.recoverTextsContainer}
+          onPress={() => navigation.navigate("Recover")}
+        >
+          <Text style={styles.recoverTexts}>
+            ¿Olvidaste tu contraseña?
+            <Text style={{ fontWeight: "bold" }}> Recupérala</Text>
+          </Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.loginButtonContainer}>
+      {/* <View style={styles.loginButtonContainer}>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("DashBoard");
           }}
           style={styles.loginButton}
         >
-          <Text style={styles.loginText}>Iniciar sesión</Text>
+          <Text style={styles.loginText}>Registrarse</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.recoverTextsContainer}
-          onPress={() => {
-            navigation.navigate("Register");
-          }}
-        >
-          <Text style={styles.recoverTexts}>
-            ¿No tienes una cuenta?
-            <Text style={{ fontWeight: "bold" }}> Regístrate</Text>
-          </Text>
-        </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 }
-const fontSizes = 23;
+const fontSizes = 20;
 
 const styles = StyleSheet.create({
   mainContainer: {
+    marginTop: "10%",
     display: "flex",
     flexDirection: "column",
-    paddingTop: 10,
-    gap: 35,
+    width: "65%",
+    gap: 15,
+  },
+  mainImage: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    alignSelf: "center",
   },
   texts: {
     fontSize: fontSizes,
@@ -115,19 +111,9 @@ const styles = StyleSheet.create({
   inputsContainer: {
     display: "flex",
     flexDirection: "column",
-    width: "65%",
-    gap: 30,
+    gap: 10,
   },
-  emailGeneralContainer: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-  },
-  passwordGeneralContainer: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-  },
+
   recoverTextsContainer: {
     display: "flex",
     flexDirection: "row",
@@ -136,58 +122,62 @@ const styles = StyleSheet.create({
   recoverTexts: {
     fontSize: fontSizes * 0.7,
   },
-  loginButtonContainer: {
-    alignItems: "center",
-  },
-  loginButton: {
-    backgroundColor: "#33658A",
-    width: "100%",
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginVertical: 15,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  loginText: {
-    fontSize: fontSizes,
-    color: "white",
-  },
-  emailContainer: {
+
+  emailGeneralContainer: {
     display: "flex",
-    flexDirection: "row",
-    backgroundColor: "white",
-    alignItems: "center",
+    flexDirection: "column",
     width: "100%",
-    paddingHorizontal: 5,
-    paddingVertical: 5,
-    borderColor: "orange",
-    borderWidth: 2,
-    borderRadius: 10,
   },
   emailInput: {
-    width: "100%",
-    backgroundColor: "white",
-    fontSize: fontSizes,
-  },
-  passwordContainers: {
     display: "flex",
-    flexDirection: "row",
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "space-between",
-    width: "100%",
-    paddingHorizontal: 5,
-    paddingVertical: 5,
     borderColor: "orange",
     borderWidth: 2,
     borderRadius: 10,
-  },
-  passwordInput: {
-    width: "90%",
+    padding: 5,
+    width: "100%",
     backgroundColor: "white",
     fontSize: fontSizes,
+  },
+  passwordGeneralContainer: {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
   },
   passwordEye: {
     width: "10%",
+    position: "absolute",
+    right: 0,
+    bottom: 7,
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContent: {
+    width: "80%",
+    padding: 30,
+    backgroundColor: "white",
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 15,
+  },
+
+  acceptText: {
+    fontSize: fontSizes * 1.1,
+    textAlign: "center",
+  },
+  acceptButton: {
+    backgroundColor: "#F28C28",
+    width: "70%",
+    alignItems: "center",
+    borderRadius: 5,
+    paddingVertical: 8,
+  },
+  acceptButtonText: {
+    color: "white",
+    fontSize: fontSizes,
   },
 });
