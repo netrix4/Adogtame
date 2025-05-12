@@ -28,7 +28,7 @@ export default function Login() {
             <View style={styles.loginButtonContainer}>
               {/* <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("DashBoard");
+                  navigation.navigate("DashBoard" as never);
                 }}
                 style={styles.loginButton}
               >
@@ -38,7 +38,7 @@ export default function Login() {
             <TouchableOpacity
               style={styles.recoverTextsContainer}
               onPress={() => {
-                navigation.navigate("Register");
+                navigation.navigate("Register" as never);
               }}
             >
               <Text style={styles.recoverTexts}>

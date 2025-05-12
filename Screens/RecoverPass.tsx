@@ -26,7 +26,7 @@ export default function RecoverPass() {
             <View style={styles.loginButtonContainer}>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("DashBoard");
+                  navigation.navigate("DashBoard" as never);
                 }}
                 style={styles.loginButton}
               >

@@ -5,7 +5,7 @@ import Login from "./Screens/Login";
 import DashBoard from "./Screens/DashBoard";
 import RecoverPass from "./Screens/RecoverPass";
 import Register from "./Screens/Register";
-import AuthGate from "../Adogtame/Components/AuthGate"; 
+import AuthGate from "./Components/AuthGate";
 
 export default function App() {
   const Stack = createNativeStackNavigator();

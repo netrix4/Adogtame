@@ -8,11 +8,9 @@ import {
   TextInput,
 } from "react-native";
 import React, { useState, useRef } from "react";
-import { useNavigation } from "@react-navigation/native";
 import adogtameIcon from "../assets/Original.jpg";
 
 export default function RecoverInputs() {
-  const navigation = useNavigation();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [hideNewPassword, setHideNewPassword] = useState(true);
