@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import pedillosImg from "../assets/pedillos.jpg";
+import pedillosImg from"../assets/pedillos.jpg";
 
 // export default function AnimalCard({ nombre, edad, raza, imagen }: any) {
 export default function AnimalCard() {
