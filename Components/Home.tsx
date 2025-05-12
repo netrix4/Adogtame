@@ -1,4 +1,11 @@
-import { Text, StyleSheet, View, SafeAreaView, FlatList } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  SafeAreaView,
+  FlatList,
+  Platform,
+} from "react-native";
 import React from "react";
 import AnimalCard from "./AnimalCard";
 import ListHeaderHome from "./ListHeaderHome";
@@ -22,6 +29,7 @@ const styles = StyleSheet.create({
     height: "100%",
     // height: "90%",
     // maxHeight: "90%",
+    // marginTop: "7%",
     width: "100%",
   },
   flatListContentStyle: {
@@ -29,8 +37,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     gap: 15,
     paddingHorizontal: "5%",
-    paddingVertical: 15,
-    paddingBottom: "15%",
+    //Ojo con esto
+    marginTop: Platform.OS === "ios" ? "3%" : "10%",
+    paddingBottom: Platform.OS === "ios" ? "15%" : "28%",
 
     // alignSelf: "center",
     // justifyContent: "center",
