@@ -6,26 +6,48 @@ import {
   View,
   Image,
   TextInput,
+  ActivityIndicator,
+  Alert,
 } from "react-native";
 import React, { useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
+import  { supabase}  from "../lib/supabase";
 import adogtameIcon from "../assets/Original.jpg";
 
 export default function LoginInputs() {
   const navigation = useNavigation();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const firstInputRef = useRef(null);
   const secondInputRef = useRef(null);
+
+  const handleLogin = async () => {
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    setLoading(false);
+
+    if (error) {
+      Alert.alert("Error al iniciar sesión", error.message);
+    } else {
+      navigation.navigate("DashBoard");
+    }
+  };
+
   return (
     <View style={styles.mainContainer}>
       <Image style={styles.mainImage} source={adogtameIcon} />
       <Text style={styles.mainTitleText}>Adogtame 🐾</Text>
+
       <View style={styles.inputsContainer}>
         <View style={styles.emailGeneralContainer}>
-          <Text style={styles.texts}>Correo Electronico</Text>
-
+          <Text style={styles.texts}>Correo Electrónico</Text>
           <TextInput
             ref={firstInputRef}
             returnKeyType="next"
@@ -35,6 +57,8 @@ export default function LoginInputs() {
             keyboardType="email-address"
             style={styles.emailInput}
             clearButtonMode="while-editing"
+            onChangeText={setEmail}
+            value={email}
           />
         </View>
 
@@ -58,42 +82,44 @@ export default function LoginInputs() {
             <Ionicons
               name={hidePassword ? "eye" : "eye-off"}
               color={"black"}
-              size={fontSizes}
+              size={20}
             />
           </TouchableOpacity>
         </View>
+
         <TouchableOpacity
           style={styles.recoverTextsContainer}
           onPress={() => navigation.navigate("Recover")}
         >
           <Text style={styles.recoverTexts}>
-            ¿Olvidaste tu contraseña?
-            <Text style={{ fontWeight: "bold" }}> Recupérala</Text>
+            ¿Olvidaste tu contraseña?{" "}
+            <Text style={{ fontWeight: "bold" }}>Recupérala</Text>
           </Text>
         </TouchableOpacity>
       </View>
-      {/* <View style={styles.loginButtonContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("DashBoard");
-          }}
-          style={styles.loginButton}
-        >
-          <Text style={styles.loginText}>Registrarse</Text>
+
+      <View style={styles.loginButtonContainer}>
+        <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
+          {loading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text style={styles.loginText}>Iniciar Sesión</Text>
+          )}
         </TouchableOpacity>
-      </View> */}
+      </View>
     </View>
   );
 }
+
 const fontSizes = 20;
 
 const styles = StyleSheet.create({
   mainContainer: {
     marginTop: "10%",
-    display: "flex",
     flexDirection: "column",
     width: "65%",
     gap: 15,
+    alignSelf: "center",
   },
   mainImage: {
     width: 200,
@@ -102,82 +128,60 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   texts: {
-    fontSize: fontSizes,
+    fontSize: 18,
+    padding: 2
   },
   mainTitleText: {
     fontSize: fontSizes * 1.5,
     alignSelf: "center",
   },
   inputsContainer: {
-    display: "flex",
-    flexDirection: "column",
     gap: 10,
   },
-
   recoverTextsContainer: {
-    display: "flex",
     flexDirection: "row",
     justifyContent: "flex-end",
   },
   recoverTexts: {
     fontSize: fontSizes * 0.7,
   },
-
   emailGeneralContainer: {
-    display: "flex",
     flexDirection: "column",
     width: "100%",
   },
   emailInput: {
-    display: "flex",
     borderColor: "orange",
-    borderWidth: 2,
+borderWidth: 2,
     borderRadius: 10,
     padding: 5,
-    width: "100%",
     backgroundColor: "white",
-    fontSize: fontSizes,
+    fontSize: 15,
   },
   passwordGeneralContainer: {
-    display: "flex",
     flexDirection: "column",
     width: "100%",
   },
   passwordEye: {
-    width: "10%",
     position: "absolute",
-    right: 0,
-    bottom: 7,
+    right: 10,
+    bottom: 10,
   },
-  modalOverlay: {
-    flex: 1,
-    justifyContent: "center",
+  loginButtonContainer: {
+    marginTop: 20,
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
-  modalContent: {
-    width: "80%",
-    padding: 30,
-    backgroundColor: "white",
-    borderRadius: 15,
+  loginButton: {
+    backgroundColor: "#33658A",
+    padding: 12,
+    justifyContent:"center",
+    borderRadius: 10,
+    width: "100%",
     alignItems: "center",
-    justifyContent: "center",
-    gap: 15,
+    marginBottom:20
   },
-
-  acceptText: {
-    fontSize: fontSizes * 1.1,
-    textAlign: "center",
-  },
-  acceptButton: {
-    backgroundColor: "#F28C28",
-    width: "70%",
-    alignItems: "center",
-    borderRadius: 5,
-    paddingVertical: 8,
-  },
-  acceptButtonText: {
-    color: "white",
+  loginText: {
+    color: "#fff",
     fontSize: fontSizes,
+    fontWeight: "500",
   },
 });

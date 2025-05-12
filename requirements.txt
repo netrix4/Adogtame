@@ -1,3 +1,7 @@
 npm install @react-navigation/native
 npm install @react-navigation/native-stack
 npm install react-native-vector-icons
+npm expo install @react-native-async-storage/async-storage
+npm install @supabase/supabase-js
+npm install lodash
+npm install -D @types/lodash

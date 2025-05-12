@@ -26,14 +26,14 @@ export default function Login() {
           <LoginInputs />
           <View style={styles.buttonNavigationContainer}>
             <View style={styles.loginButtonContainer}>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 onPress={() => {
                   navigation.navigate("DashBoard");
                 }}
                 style={styles.loginButton}
               >
                 <Text style={styles.loginText}>Iniciar sesión</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
             <TouchableOpacity
               style={styles.recoverTextsContainer}

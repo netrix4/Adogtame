@@ -5,13 +5,15 @@ import Login from "./Screens/Login";
 import DashBoard from "./Screens/DashBoard";
 import RecoverPass from "./Screens/RecoverPass";
 import Register from "./Screens/Register";
+import AuthGate from "../Adogtame/Components/AuthGate"; 
 
 export default function App() {
-  const stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator();
+
   return (
     <NavigationContainer>
       <StatusBar />
-      <stack.Navigator
+      <Stack.Navigator
         initialRouteName="Login"
         screenOptions={{
           headerShown: false,
@@ -28,11 +30,17 @@ export default function App() {
           }),
         }}
       >
-        <stack.Screen name="Login" component={Login} />
-        <stack.Screen name="Recover" component={RecoverPass} />
-        <stack.Screen name="Register" component={Register} />
-        <stack.Screen name="DashBoard" component={DashBoard} />
-      </stack.Navigator>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Recover" component={RecoverPass} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="DashBoard">
+          {() => (
+            <AuthGate>
+              <DashBoard />
+            </AuthGate>
+          )}
+        </Stack.Screen>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
