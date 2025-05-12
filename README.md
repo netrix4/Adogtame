@@ -6,6 +6,7 @@ ReactNative app for dog adoptions
 
 >[!NOTE]
 >How to download the sdk 53 version to 52
+
 >Run the following commands
 
 ``npm install expo@52`` 
@@ -24,3 +25,10 @@ ReactNative app for dog adoptions
 
 ### Install Supabase in the project
  ``npm install @supabase/supabase-js``
+
+``npm install lodash``
+
+``npm install -D @types/lodash``
+
+### Run the project after the installation of the dependencies
+``npx expo start -c``
