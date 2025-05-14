@@ -10,6 +10,7 @@ In this document we will provide a complete guide for the user to install, confi
 **Adogtame** is a mobile apllication focused on the responsible adoption of pets, designed to save lives by connecting potencial adopters whit dogs and cats at risk, housed in rabies centers and municipal kennels
 
 ## Purposes and benefits of Adogtame
+The main objective of **Adogtame** is to reduce the rate of slaughter in animal control centers, providingvisibility to these pets and facilitating their adoption in an accessible, informed and empathetic way
 
 ## Run project
 >[!WARNING]
