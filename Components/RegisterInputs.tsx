@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import {
   Text,
+  Image,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -37,7 +38,7 @@ export default function RegisterInputs() {
           nombre,
           telefono,
           direccion,
-          tipo_usuario: 'adoptante'
+          tipo_usuario: "adoptante",
         },
       },
     });
@@ -51,6 +52,10 @@ export default function RegisterInputs() {
 
   return (
     <View style={styles.mainContainer}>
+      <Image
+        style={styles.mainImage}
+        source={require("../assets/Original.jpg")}
+      />
       <Text style={styles.mainTitleText}>Adogtame 🐾</Text>
       <View style={styles.inputsContainer}>
         <View style={styles.emailGeneralContainer}>
@@ -165,10 +170,17 @@ const fontSizes = 20;
 
 const styles = StyleSheet.create({
   mainContainer: {
-    display: "flex",
+    marginTop: "10%",
     flexDirection: "column",
     width: "65%",
     gap: 15,
+    alignSelf: "center",
+  },
+  mainImage: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    alignSelf: "center",
   },
   texts: {
     fontSize: fontSizes,

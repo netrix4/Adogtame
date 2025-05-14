@@ -38,8 +38,10 @@ const styles = StyleSheet.create({
     gap: 15,
     paddingHorizontal: "5%",
     //Ojo con esto
-    marginTop: Platform.OS === "ios" ? "3%" : "10%",
-    paddingBottom: Platform.OS === "ios" ? "15%" : "28%",
+    // marginTop: Platform.OS === "ios" ? "3%" : "10%",
+    // paddingBottom: Platform.OS === "ios" ? "15%" : "28%",
+    marginTop: Platform.OS === "android" ? "10%" : "3%",
+    paddingBottom: Platform.OS === "android" ? "28%" : "15%",
 
     // alignSelf: "center",
     // justifyContent: "center",

@@ -16,13 +16,12 @@ import adogtameIcon from "../assets/Original.jpg";
 
 export default function LoginInputs() {
   const navigation = useNavigation();
+  const firstInputRef = useRef(null);
+  const secondInputRef = useRef(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
   const [loading, setLoading] = useState(false);
-
-  const firstInputRef = useRef(null);
-  const secondInputRef = useRef(null);
 
   const handleLogin = async () => {
     setLoading(true);
@@ -171,6 +170,7 @@ const styles = StyleSheet.create({
   loginButtonContainer: {
     marginTop: 20,
     alignItems: "center",
+    paddingVertical: 10,
   },
   loginButton: {
     backgroundColor: "#33658A",
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: "100%",
     alignItems: "center",
-    marginBottom: 20,
+    // marginBottom: 20,
   },
   loginText: {
     color: "#fff",

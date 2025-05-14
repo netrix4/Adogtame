@@ -22,19 +22,8 @@ export default function Login() {
     >
       <SafeAreaView>
         <View style={styles.mainContainer}>
-          {/* <Image style={styles.mainImage} source={adogtameIcon} /> */}
           <LoginInputs />
           <View style={styles.buttonNavigationContainer}>
-            <View style={styles.loginButtonContainer}>
-              {/* <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("DashBoard" as never);
-                }}
-                style={styles.loginButton}
-              >
-                <Text style={styles.loginText}>Iniciar sesión</Text>
-              </TouchableOpacity> */}
-            </View>
             <TouchableOpacity
               style={styles.recoverTextsContainer}
               onPress={() => {
@@ -66,7 +55,7 @@ const styles = StyleSheet.create({
     // paddingVertical: "2%",
     height: "100%",
     alignItems: "center",
-    gap: 30,
+    // gap: 30,
     justifyContent: "space-evenly",
   },
   buttonNavigationContainer: {

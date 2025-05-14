@@ -33,13 +33,6 @@ export default function DashBoard() {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBarPosAbsolute,
-        // tabBarBackground: () => (
-        //   <BlurView
-        //     tint="light"
-        //     intensity={1000}
-        //     style={StyleSheet.absoluteFill}
-        //   />
-        // ),
       }}
     >
       <Tab.Screen
@@ -82,11 +75,10 @@ const iconSizes = 30;
 
 const styles = StyleSheet.create({
   tabBarPosAbsolute: {
-    paddingTop: "2%",
+    // paddingTop: "2%",
     display: "flex",
     flexDirection: "row",
     height: "8%",
-    // position: "absolute",
     backgroundColor: "#F28C28",
   },
   selectedIcon: {

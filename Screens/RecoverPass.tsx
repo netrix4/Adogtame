@@ -3,7 +3,6 @@ import {
   StyleSheet,
   SafeAreaView,
   View,
-  Image,
   TouchableOpacity,
   Text,
   Platform,
@@ -56,7 +55,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     display: "flex",
     flexDirection: "column",
-    // paddingVertical: "2%",
     height: "100%",
     alignItems: "center",
     gap: 30,
