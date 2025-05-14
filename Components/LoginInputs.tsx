@@ -13,6 +13,7 @@ import React, { useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { supabase } from "../lib/supabase";
 import adogtameIcon from "../assets/Original.jpg";
+import { Session } from "@supabase/supabase-js";
 
 export default function LoginInputs() {
   const navigation = useNavigation();
@@ -95,14 +96,26 @@ export default function LoginInputs() {
           </Text>
         </TouchableOpacity>
       </View>
-
-      <View style={styles.loginButtonContainer}>
-        <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
-          {loading ? (
-            <ActivityIndicator color="#fff" />
-          ) : (
-            <Text style={styles.loginText}>Iniciar Sesión</Text>
-          )}
+      <View style={styles.buttonNavigationContainer}>
+        <View style={styles.loginButtonContainer}>
+          <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
+            {loading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text style={styles.loginText}>Iniciar Sesión</Text>
+            )}
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity
+          style={styles.recoverTextsContainer}
+          onPress={() => {
+            navigation.navigate("Register" as never);
+          }}
+        >
+          <Text style={styles.recoverTexts}>
+            ¿No tienes una cuenta?
+            <Text style={{ fontWeight: "bold" }}> Regístrate</Text>
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -135,7 +148,13 @@ const styles = StyleSheet.create({
   inputsContainer: {
     gap: 10,
   },
+  buttonNavigationContainer: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   recoverTextsContainer: {
+    display: "flex",
     flexDirection: "row",
     justifyContent: "flex-end",
   },
@@ -168,18 +187,16 @@ const styles = StyleSheet.create({
     bottom: 7,
   },
   loginButtonContainer: {
-    marginTop: 20,
-    alignItems: "center",
-    paddingVertical: 10,
+    width: "100%",
   },
   loginButton: {
     backgroundColor: "#33658A",
-    padding: 12,
-    justifyContent: "center",
-    borderRadius: 10,
     width: "100%",
+    paddingVertical: 10,
+    borderRadius: 10,
+    marginVertical: 15,
     alignItems: "center",
-    // marginBottom: 20,
+    justifyContent: "center",
   },
   loginText: {
     color: "#fff",

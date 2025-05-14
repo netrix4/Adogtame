@@ -23,19 +23,6 @@ export default function Login() {
       <SafeAreaView>
         <View style={styles.mainContainer}>
           <LoginInputs />
-          <View style={styles.buttonNavigationContainer}>
-            <TouchableOpacity
-              style={styles.recoverTextsContainer}
-              onPress={() => {
-                navigation.navigate("Register" as never);
-              }}
-            >
-              <Text style={styles.recoverTexts}>
-                ¿No tienes una cuenta?
-                <Text style={{ fontWeight: "bold" }}> Regístrate</Text>
-              </Text>
-            </TouchableOpacity>
-          </View>
         </View>
       </SafeAreaView>
     </KeyboardAvoidingView>
@@ -52,7 +39,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     display: "flex",
     flexDirection: "column",
-    // paddingVertical: "2%",
     height: "100%",
     alignItems: "center",
     // gap: 30,
@@ -60,11 +46,11 @@ const styles = StyleSheet.create({
   },
   buttonNavigationContainer: {
     width: "65%",
+    height: 100,
     justifyContent: "center",
     alignItems: "center",
   },
   loginButtonContainer: {
-    // alignItems: "center",
     width: "100%",
   },
   loginButton: {

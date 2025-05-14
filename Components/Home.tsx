@@ -5,16 +5,22 @@ import {
   SafeAreaView,
   FlatList,
   Platform,
+  useWindowDimensions,
+  BackHandler,
 } from "react-native";
 import React from "react";
 import AnimalCard from "./AnimalCard";
 import ListHeaderHome from "./ListHeaderHome";
 
 export default function Home() {
+  const { height } = useWindowDimensions();
   return (
     <SafeAreaView>
       <FlatList
-        style={styles.mainContainer}
+        style={[
+          styles.mainContainer,
+          { height: Platform.OS != "web" ? "100%" : height },
+        ]}
         contentContainerStyle={styles.flatListContentStyle}
         ListHeaderComponent={ListHeaderHome}
         data={Array(10)}
@@ -26,24 +32,17 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height: "100%",
-    // height: "90%",
-    // maxHeight: "90%",
-    // marginTop: "7%",
     width: "100%",
   },
   flatListContentStyle: {
     display: "flex",
     flexDirection: "column",
     gap: 15,
-    paddingHorizontal: "5%",
+    paddingHorizontal: Platform.OS === "android" ? "5%" : "25%",
     //Ojo con esto
     // marginTop: Platform.OS === "ios" ? "3%" : "10%",
     // paddingBottom: Platform.OS === "ios" ? "15%" : "28%",
     marginTop: Platform.OS === "android" ? "10%" : "3%",
-    paddingBottom: Platform.OS === "android" ? "28%" : "15%",
-
-    // alignSelf: "center",
-    // justifyContent: "center",
+    paddingBottom: Platform.OS === "android" ? "15%" : "10%",
   },
 });
