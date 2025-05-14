@@ -18,6 +18,9 @@ export default function RegisterInputs() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
+  const [nombre, setNombre] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [direccion, setDireccion] = useState("");
 
   const firstInputRef = useRef(null);
   const secondInputRef = useRef(null);
@@ -29,6 +32,14 @@ export default function RegisterInputs() {
     const { error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          nombre,
+          telefono,
+          direccion,
+          tipo_usuario: 'adoptante'
+        },
+      },
     });
 
     if (error) {
@@ -49,6 +60,8 @@ export default function RegisterInputs() {
             returnKeyType="next"
             onSubmitEditing={() => secondInputRef?.current?.focus()}
             placeholder="nombre completo"
+            onChangeText={setNombre}
+            value={nombre}
             style={styles.emailInput}
           />
         </View>
@@ -60,6 +73,8 @@ export default function RegisterInputs() {
             onSubmitEditing={() => thirdInputRef?.current?.focus()}
             placeholder="10 dígitos"
             keyboardType="number-pad"
+            onChangeText={setTelefono}
+            value={telefono}
             style={styles.emailInput}
           />
         </View>
@@ -83,6 +98,8 @@ export default function RegisterInputs() {
             returnKeyType="next"
             onSubmitEditing={() => fifthInputRef?.current?.focus()}
             placeholder="calle, num, colonia, ciudad"
+            onChangeText={setDireccion}
+            value={direccion}
             style={styles.emailInput}
           />
         </View>

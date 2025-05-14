@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import React, { useState, useRef } from "react";
 import { useNavigation } from "@react-navigation/native";
-import  { supabase}  from "../lib/supabase";
+import { supabase } from "../lib/supabase";
 import adogtameIcon from "../assets/Original.jpg";
 
 export default function LoginInputs() {
@@ -36,7 +36,7 @@ export default function LoginInputs() {
     if (error) {
       Alert.alert("Error al iniciar sesión", error.message);
     } else {
-      navigation.navigate("DashBoard");
+      navigation.navigate("DashBoard" as never);
     }
   };
 
@@ -82,14 +82,13 @@ export default function LoginInputs() {
             <Ionicons
               name={hidePassword ? "eye" : "eye-off"}
               color={"black"}
-              size={20}
+              size={fontSizes}
             />
           </TouchableOpacity>
         </View>
-
         <TouchableOpacity
           style={styles.recoverTextsContainer}
-          onPress={() => navigation.navigate("Recover")}
+          onPress={() => navigation.navigate("Recover" as never)}
         >
           <Text style={styles.recoverTexts}>
             ¿Olvidaste tu contraseña?{" "}
@@ -128,8 +127,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   texts: {
-    fontSize: 18,
-    padding: 2
+    fontSize: fontSizes,
   },
   mainTitleText: {
     fontSize: fontSizes * 1.5,
@@ -150,21 +148,25 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   emailInput: {
+    display: "flex",
     borderColor: "orange",
-borderWidth: 2,
+    borderWidth: 2,
     borderRadius: 10,
     padding: 5,
+    width: "100%",
     backgroundColor: "white",
-    fontSize: 15,
+    fontSize: fontSizes,
   },
   passwordGeneralContainer: {
+    display: "flex",
     flexDirection: "column",
     width: "100%",
   },
   passwordEye: {
+    width: "10%",
     position: "absolute",
-    right: 10,
-    bottom: 10,
+    right: 0,
+    bottom: 7,
   },
   loginButtonContainer: {
     marginTop: 20,
@@ -173,11 +175,11 @@ borderWidth: 2,
   loginButton: {
     backgroundColor: "#33658A",
     padding: 12,
-    justifyContent:"center",
+    justifyContent: "center",
     borderRadius: 10,
     width: "100%",
     alignItems: "center",
-    marginBottom:20
+    marginBottom: 20,
   },
   loginText: {
     color: "#fff",
