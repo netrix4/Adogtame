@@ -1,4 +1,15 @@
-ReactNative app for dog adoptions
+# Adogtame :feet:
+## User manual :book:
+In this document we will provide a complete guide for the user to install, configure and make use of **Adogtame**
+
+## Index
+1. [Introduction to Adogtame](#introduction-to-adogtame)
+2. [Purposes and benefits of Adogtame](#purposes-and-benefits-of-adogtame)
+
+## Introduction to Adogtame 
+**Adogtame** is a mobile apllication focused on the responsible adoption of pets, designed to save lives by connecting potencial adopters whit dogs and cats at risk, housed in rabies centers and municipal kennels
+
+## Purposes and benefits of Adogtame
 
 ## Run project
 >[!WARNING]
