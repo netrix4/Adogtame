@@ -1,23 +1,27 @@
-import {
-  StyleSheet,
-  Text,
-  Image,
-  View,
-  Touchable,
-  TouchableOpacity,
-} from "react-native";
+import {StyleSheet,Text, Image, View, TouchableOpacity,} from "react-native";
 import React from "react";
-import pedillosImg from"../assets/pedillos.jpg";
 
-// export default function AnimalCard({ nombre, edad, raza, imagen }: any) {
-export default function AnimalCard() {
+type Animal = {
+  nombre: string;
+  edad: number;
+  raza: string;
+  foto_url: string;
+  descripcion: string;
+  tipo: string;
+  tamaño: string;
+};
+
+export default function AnimalCard({ animal }: { animal: Animal }) {
   return (
     <View style={styles.animalCard}>
-      <Image source={pedillosImg} style={styles.animalImage}></Image>
       <View style={styles.animalQuickInfo}>
-        <Text style={styles.quickInfoText}>Nombre: Pp</Text>
-        <Text style={styles.quickInfoText}>Edad:87</Text>
-        <Text style={styles.quickInfoText}>Raza:Todas</Text>
+        <Text style={styles.quickInfoText}>Nombre: {animal.nombre}</Text>
+        <Text style={styles.quickInfoText}>Tipo: {animal.tipo}</Text>
+        <Text style={styles.quickInfoText}>Raza: {animal.raza}</Text>
+        <Text style={styles.quickInfoText}>Edad: {animal.edad}</Text>
+        <Text style={styles.quickInfoText}>Tamano: {animal.tamaño}</Text>
+        <Text style={styles.quickInfoText}>Descripcion: {animal.descripcion}</Text>
+
       </View>
       <View style={styles.watchMoreContainer}>
         <TouchableOpacity>
@@ -27,7 +31,8 @@ export default function AnimalCard() {
     </View>
   );
 }
-const fontSizes = 20;
+
+const fontSizes = 16;
 const styles = StyleSheet.create({
   animalCard: {
     display: "flex",
@@ -66,3 +71,4 @@ const styles = StyleSheet.create({
     fontSize: fontSizes,
   },
 });
+
