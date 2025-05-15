@@ -34,6 +34,8 @@ export default function RegisterInputs() {
 
   const validPassRegex = /(?=.*[A-Z]).{4,}/gm;
   const validCellPhone = /^([0-9]){10,10}$/gm;
+  const validAddress =
+    /^(([a-zA-Z0-9 ]+){0,5}, ?#?[0-9]+), ?([a-zA-Z0-9]+), ?([a-zA-Z0-9]+) ?$/gm;
 
   const handleRegister = async () => {
     let validationResults: Boolean[] = [];
@@ -41,6 +43,7 @@ export default function RegisterInputs() {
     validationResults.push(validEmailRegex.test(email));
     validationResults.push(validPassRegex.test(password));
     validationResults.push(validCellPhone.test(telefono));
+    validationResults.push(validAddress.test(direccion));
 
     const isAllOk = (): Boolean => {
       validationResults.forEach((result: Boolean) => {
@@ -77,8 +80,18 @@ export default function RegisterInputs() {
   const onPasswordChange = (changingPass: string) => {
     setPassword(changingPass);
   };
+  const onNameChange = (changingName: string) => {
+    if (!/([0-9])/gm.test(changingName)) {
+      setNombre(changingName);
+    }
+  };
+  const onDireccionChange = (changingAddress: string) => {
+    setDireccion(changingAddress);
+  };
   const onCellPhoneNumberChange = (changingCell: string) => {
-    setTelefono(changingCell);
+    if (!/([a-zA-Z])/gm.test(changingCell)) {
+      setTelefono(changingCell);
+    }
   };
 
   return (
@@ -96,7 +109,7 @@ export default function RegisterInputs() {
             returnKeyType="next"
             onSubmitEditing={() => secondInputRef?.current?.focus()}
             placeholder="nombre completo"
-            onChangeText={setNombre}
+            onChangeText={onNameChange}
             value={nombre}
             style={styles.emailInput}
           />
@@ -145,7 +158,7 @@ export default function RegisterInputs() {
             returnKeyType="next"
             onSubmitEditing={() => fifthInputRef?.current?.focus()}
             placeholder="calle, num, colonia, ciudad"
-            onChangeText={setDireccion}
+            onChangeText={onDireccionChange}
             value={direccion}
             style={styles.emailInput}
           />
