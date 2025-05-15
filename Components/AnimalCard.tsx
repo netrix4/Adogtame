@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import pedillosImg from"../assets/pedillos.jpg";
+import pedillosImg from "../assets/pedillos.jpg";
 
 // export default function AnimalCard({ nombre, edad, raza, imagen }: any) {
 export default function AnimalCard() {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     width: "100%",
-    // height: ,
+    height: 100,
     justifyContent: "space-evenly",
     borderRadius: 15,
     backgroundColor: "#D9D9D9",
@@ -42,7 +42,9 @@ const styles = StyleSheet.create({
   animalImage: {
     borderRadius: 15,
     width: "25%",
+    maxWidth: 100,
     height: "100%",
+    alignSelf: "flex-start",
   },
   animalQuickInfo: {
     display: "flex",

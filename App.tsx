@@ -6,12 +6,29 @@ import DashBoard from "./Screens/DashBoard";
 import RecoverPass from "./Screens/RecoverPass";
 import Register from "./Screens/Register";
 import AuthGate from "./Components/AuthGate";
+import NotFoundScreen from "./Screens/NotFoundScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
 
+  const linking = {
+    // prefixes: ["http://localhost:8081", "https://tusitio.com"],
+    prefixes: ["http://localhost:8081"],
+
+    config: {
+      screens: {
+        Home: "",
+        Login: "login",
+        Recover: "recover",
+        Register: "register",
+        DashBoard: "dashboard",
+        NotFound: "*",
+      },
+    },
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <StatusBar />
       <Stack.Navigator
         initialRouteName="Login"
@@ -40,6 +57,7 @@ export default function App() {
             </AuthGate>
           )}
         </Stack.Screen>
+        <Stack.Screen name="NotFound" component={NotFoundScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
