@@ -1,5 +1,4 @@
 import {
-  FlatList,
   Platform,
   SafeAreaView,
   StyleSheet,
@@ -12,9 +11,9 @@ import {
 } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import pedillosImg from "../assets/pedillos.jpg";
 import { supabase } from "../lib/supabase";
 import { CommonActions, useNavigation } from "@react-navigation/native";
+import pedillosImg from "../assets/pedillos.jpg";
 
 export default function Profile() {
   const { width, height } = useWindowDimensions();

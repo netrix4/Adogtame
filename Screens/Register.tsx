@@ -7,21 +7,26 @@ import {
 } from "react-native";
 import React from "react";
 import RegisterInputs from "../Components/RegisterInputs";
+import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../hooks/useAuth";
 
-export default function Login() {
-  return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      // behavior={Platform.OS === "ios" ? "position" : "height"}
-      behavior={"position"}
-    >
-      <SafeAreaView>
-        <View style={styles.mainContainer}>
-          <RegisterInputs />
-        </View>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
-  );
+export default function Register() {
+  const navigation = useNavigation();
+  const { session, loading } = useAuth();
+
+  if (session) {
+    navigation.navigate("DashBoard" as never);
+  } else {
+    return (
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={"position"}>
+        <SafeAreaView>
+          <View style={styles.mainContainer}>
+            <RegisterInputs />
+          </View>
+        </SafeAreaView>
+      </KeyboardAvoidingView>
+    );
+  }
 }
 const fontSizes = 20;
 
@@ -33,8 +38,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 30,
     justifyContent: "space-evenly",
-
-    // paddingVertical: 100,
   },
   mainImage: {
     width: 200,

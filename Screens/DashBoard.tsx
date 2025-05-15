@@ -4,7 +4,6 @@ import Favorites from "../Components/Favorites";
 import Home from "../Components/Home";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { BlurView } from "expo-blur";
 import { StyleSheet, View } from "react-native";
 
 const Tab = createBottomTabNavigator();

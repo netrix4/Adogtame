@@ -9,17 +9,17 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { supabase } from "../lib/supabase";
 import adogtameIcon from "../assets/Original.jpg";
-import { Session } from "@supabase/supabase-js";
 
 export default function LoginInputs() {
   const navigation = useNavigation();
   const firstInputRef = useRef(null);
   const secondInputRef = useRef(null);
   const [email, setEmail] = useState("");
+  const [validCredentials, setValidCredentials] = useState(true);
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -30,14 +30,19 @@ export default function LoginInputs() {
       email,
       password,
     });
-
     setLoading(false);
-
     if (error) {
       Alert.alert("Error al iniciar sesión", error.message);
+      setValidCredentials(false);
     } else {
+      setValidCredentials(true);
       navigation.navigate("DashBoard" as never);
     }
+  };
+
+  const onEmailChangeText = (changingString: string) => {
+    const passedValue = changingString;
+    setEmail(passedValue);
   };
 
   return (
@@ -47,7 +52,7 @@ export default function LoginInputs() {
 
       <View style={styles.inputsContainer}>
         <View style={styles.emailGeneralContainer}>
-          <Text style={styles.texts}>Correo Electrónico</Text>
+          <Text style={styles.texts}>Correo electrónico</Text>
           <TextInput
             ref={firstInputRef}
             returnKeyType="next"
@@ -57,7 +62,7 @@ export default function LoginInputs() {
             keyboardType="email-address"
             style={styles.emailInput}
             clearButtonMode="while-editing"
-            onChangeText={setEmail}
+            onChangeText={onEmailChangeText}
             value={email}
           />
         </View>
@@ -98,6 +103,9 @@ export default function LoginInputs() {
       </View>
       <View style={styles.buttonNavigationContainer}>
         <View style={styles.loginButtonContainer}>
+          <Text style={styles.invalidField}>
+            {validCredentials ? "" : "Credenciales invalidas, revisalas"}
+          </Text>
           <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
             {loading ? (
               <ActivityIndicator color="#fff" />
@@ -202,5 +210,8 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: fontSizes,
     fontWeight: "500",
+  },
+  invalidField: {
+    color: "red",
   },
 });

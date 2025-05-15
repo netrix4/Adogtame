@@ -3,30 +3,33 @@ import {
   StyleSheet,
   SafeAreaView,
   View,
-  Image,
-  Text,
-  TouchableOpacity,
   Platform,
 } from "react-native";
 import React from "react";
 import LoginInputs from "../Components/LoginInputs";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Login() {
   const navigation = useNavigation();
+  const { session, loading } = useAuth();
 
-  return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "position" : "height"}
-    >
-      <SafeAreaView>
-        <View style={styles.mainContainer}>
-          <LoginInputs />
-        </View>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
-  );
+  if (session) {
+    navigation.navigate("DashBoard" as never);
+  } else {
+    return (
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "position" : "height"}
+      >
+        <SafeAreaView>
+          <View style={styles.mainContainer}>
+            <LoginInputs />
+          </View>
+        </SafeAreaView>
+      </KeyboardAvoidingView>
+    );
+  }
 }
 const fontSizes = 20;
 
@@ -41,7 +44,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     height: "100%",
     alignItems: "center",
-    // gap: 30,
     justifyContent: "space-evenly",
   },
   buttonNavigationContainer: {

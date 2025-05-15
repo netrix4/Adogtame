@@ -10,44 +10,51 @@ import {
 import React from "react";
 import RecoverInputs from "../Components/RecoverInputs";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../hooks/useAuth";
 
 export default function RecoverPass() {
   const navigation = useNavigation();
-  return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "position" : "height"}
-    >
-      <SafeAreaView>
-        <View style={styles.mainContainer}>
-          <RecoverInputs />
-          <View style={styles.buttonNavigationContainer}>
-            <View style={styles.loginButtonContainer}>
+  const { session, loading } = useAuth();
+
+  if (session) {
+    navigation.navigate("DashBoard" as never);
+  } else {
+    return (
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "position" : "height"}
+      >
+        <SafeAreaView>
+          <View style={styles.mainContainer}>
+            <RecoverInputs />
+            <View style={styles.buttonNavigationContainer}>
+              <View style={styles.loginButtonContainer}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("DashBoard" as never);
+                  }}
+                  style={styles.loginButton}
+                >
+                  <Text style={styles.loginText}>Cambiar contraseña</Text>
+                </TouchableOpacity>
+              </View>
               <TouchableOpacity
+                style={styles.recoverTextsContainer}
                 onPress={() => {
-                  navigation.navigate("DashBoard" as never);
+                  navigation.goBack();
                 }}
-                style={styles.loginButton}
               >
-                <Text style={styles.loginText}>Cambiar contraseña</Text>
+                <Text style={styles.recoverTexts}>
+                  ¿Ya la recordaste?
+                  <Text style={{ fontWeight: "bold" }}> Volver</Text>
+                </Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity
-              style={styles.recoverTextsContainer}
-              onPress={() => {
-                navigation.goBack();
-              }}
-            >
-              <Text style={styles.recoverTexts}>
-                ¿Ya la recordaste?
-                <Text style={{ fontWeight: "bold" }}> Volver</Text>
-              </Text>
-            </TouchableOpacity>
           </View>
-        </View>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
-  );
+        </SafeAreaView>
+      </KeyboardAvoidingView>
+    );
+  }
 }
 const fontSizes = 20;
 
