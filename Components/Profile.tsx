@@ -20,7 +20,7 @@ export default function Profile() {
   const navigation = useNavigation();
 
   const handleLogOut = async () => {
-    const { error } = await supabase.auth.signOut({ scope: "local" });
+    const { error } = await supabase.auth.signOut({ scope: "global" });
     if (error) {
       Alert.alert("Error al cerrar sesión", error.message);
     } else {
