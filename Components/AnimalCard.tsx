@@ -1,67 +1,72 @@
-import {
-  StyleSheet,
-  Text,
-  Image,
-  View,
-  Touchable,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, Image, View } from "react-native";
 import React from "react";
+
 import pedillosImg from "../assets/pedillos.jpg";
 
-// export default function AnimalCard({ nombre, edad, raza, imagen }: any) {
-export default function AnimalCard() {
+type Animal = {
+  nombre: string;
+  edad: number;
+  raza: string;
+  foto_url: string;
+  descripcion: string;
+  tipo: string;
+  tamaño: string;
+  sexo: string;
+};
+
+
+export default function AnimalCard({ animal }: { animal: Animal }) {
   return (
     <View style={styles.animalCard}>
-      <Image source={pedillosImg} style={styles.animalImage}></Image>
+      <Image source={{ uri: animal.foto_url }} style={styles.animalImage} resizeMode="cover"/>
+
       <View style={styles.animalQuickInfo}>
-        <Text style={styles.quickInfoText}>Nombre: Pp</Text>
-        <Text style={styles.quickInfoText}>Edad:87</Text>
-        <Text style={styles.quickInfoText}>Raza:Todas</Text>
-      </View>
-      <View style={styles.watchMoreContainer}>
-        <TouchableOpacity>
-          <Text style={styles.watchMoreText}>Ver más</Text>
-        </TouchableOpacity>
+        <Text style={styles.quickInfoText}>Nombre: {animal.nombre}</Text>
+        <Text style={styles.quickInfoText}>Tipo: {animal.tipo}</Text>
+        <Text style={styles.quickInfoText}>Raza: {animal.raza}</Text>
+        <Text style={styles.quickInfoText}>Sexo: {animal.sexo}</Text>
+        <Text style={styles.quickInfoText}>Edad: {animal.edad}</Text>
+        <Text style={styles.quickInfoText}>Tamaño: {animal.tamaño}</Text>
       </View>
     </View>
   );
 }
-const fontSizes = 20;
+
+const fontSizes = 16;
+
 const styles = StyleSheet.create({
   animalCard: {
-    display: "flex",
     flexDirection: "row",
     width: "100%",
-    height: 100,
-    justifyContent: "space-evenly",
+
     borderRadius: 15,
     backgroundColor: "#D9D9D9",
-    padding: 5,
+    padding: 10,
+    gap: 10,
+    alignItems: "center",
   },
   animalImage: {
     borderRadius: 15,
+
     width: "25%",
     maxWidth: 100,
     height: "100%",
     alignSelf: "flex-start",
+
   },
   animalQuickInfo: {
-    display: "flex",
+    flex: 1,
     flexDirection: "column",
-    width: "50%",
-    padding: 15,
+    padding: 10,
   },
   quickInfoText: {
     fontWeight: "bold",
-    textAlign: "left",
     fontSize: fontSizes,
+    marginBottom: 2,
   },
   watchMoreContainer: {
     padding: 15,
-    display: "flex",
-    flexDirection: "column-reverse",
-    width: "25%",
+    justifyContent: "flex-end",
   },
   watchMoreText: {
     color: "#33658A",
