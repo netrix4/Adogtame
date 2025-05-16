@@ -4,7 +4,6 @@ import Favorites from "../Components/Favorites";
 import Home from "../Components/Home";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { BlurView } from "expo-blur";
 import { StyleSheet, View } from "react-native";
 
 const Tab = createBottomTabNavigator();
@@ -33,13 +32,6 @@ export default function DashBoard() {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBarPosAbsolute,
-        // tabBarBackground: () => (
-        //   <BlurView
-        //     tint="light"
-        //     intensity={1000}
-        //     style={StyleSheet.absoluteFill}
-        //   />
-        // ),
       }}
     >
       <Tab.Screen
@@ -82,11 +74,10 @@ const iconSizes = 30;
 
 const styles = StyleSheet.create({
   tabBarPosAbsolute: {
-    paddingTop: "2%",
+    // paddingTop: "2%",
     display: "flex",
     flexDirection: "row",
     height: "8%",
-    // position: "absolute",
     backgroundColor: "#F28C28",
   },
   selectedIcon: {

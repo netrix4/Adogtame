@@ -9,20 +9,20 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { supabase } from "../lib/supabase";
 import adogtameIcon from "../assets/Original.jpg";
 
 export default function LoginInputs() {
   const navigation = useNavigation();
+  const firstInputRef = useRef(null);
+  const secondInputRef = useRef(null);
   const [email, setEmail] = useState("");
+  const [validCredentials, setValidCredentials] = useState(true);
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
   const [loading, setLoading] = useState(false);
-
-  const firstInputRef = useRef(null);
-  const secondInputRef = useRef(null);
 
   const handleLogin = async () => {
     setLoading(true);
@@ -30,14 +30,19 @@ export default function LoginInputs() {
       email,
       password,
     });
-
     setLoading(false);
-
     if (error) {
       Alert.alert("Error al iniciar sesión", error.message);
+      setValidCredentials(false);
     } else {
+      setValidCredentials(true);
       navigation.navigate("DashBoard" as never);
     }
+  };
+
+  const onEmailChangeText = (changingString: string) => {
+    const passedValue = changingString;
+    setEmail(passedValue);
   };
 
   return (
@@ -47,7 +52,7 @@ export default function LoginInputs() {
 
       <View style={styles.inputsContainer}>
         <View style={styles.emailGeneralContainer}>
-          <Text style={styles.texts}>Correo Electrónico</Text>
+          <Text style={styles.texts}>Correo electrónico</Text>
           <TextInput
             ref={firstInputRef}
             returnKeyType="next"
@@ -57,7 +62,7 @@ export default function LoginInputs() {
             keyboardType="email-address"
             style={styles.emailInput}
             clearButtonMode="while-editing"
-            onChangeText={setEmail}
+            onChangeText={onEmailChangeText}
             value={email}
           />
         </View>
@@ -96,14 +101,29 @@ export default function LoginInputs() {
           </Text>
         </TouchableOpacity>
       </View>
-
-      <View style={styles.loginButtonContainer}>
-        <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
-          {loading ? (
-            <ActivityIndicator color="#fff" />
-          ) : (
-            <Text style={styles.loginText}>Iniciar Sesión</Text>
-          )}
+      <View style={styles.buttonNavigationContainer}>
+        <View style={styles.loginButtonContainer}>
+          <Text style={styles.invalidField}>
+            {validCredentials ? "" : "Credenciales invalidas, revisalas"}
+          </Text>
+          <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
+            {loading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text style={styles.loginText}>Iniciar Sesión</Text>
+            )}
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity
+          style={styles.recoverTextsContainer}
+          onPress={() => {
+            navigation.navigate("Register" as never);
+          }}
+        >
+          <Text style={styles.recoverTexts}>
+            ¿No tienes una cuenta?
+            <Text style={{ fontWeight: "bold" }}> Regístrate</Text>
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -136,7 +156,13 @@ const styles = StyleSheet.create({
   inputsContainer: {
     gap: 10,
   },
+  buttonNavigationContainer: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   recoverTextsContainer: {
+    display: "flex",
     flexDirection: "row",
     justifyContent: "flex-end",
   },
@@ -169,21 +195,23 @@ const styles = StyleSheet.create({
     bottom: 7,
   },
   loginButtonContainer: {
-    marginTop: 20,
-    alignItems: "center",
+    width: "100%",
   },
   loginButton: {
     backgroundColor: "#33658A",
-    padding: 12,
-    justifyContent: "center",
-    borderRadius: 10,
     width: "100%",
+    paddingVertical: 10,
+    borderRadius: 10,
+    marginVertical: 15,
     alignItems: "center",
-    marginBottom: 20,
+    justifyContent: "center",
   },
   loginText: {
     color: "#fff",
     fontSize: fontSizes,
     fontWeight: "500",
+  },
+  invalidField: {
+    color: "red",
   },
 });

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {Text, StyleSheet, View, SafeAreaView, FlatList, Platform, ActivityIndicator,} from "react-native";
+
 import AnimalCard from "./AnimalCard";
 import ListHeaderHome from "./ListHeaderHome";
 import { useFiltroAnimales } from "../hooks/useFiltroAnimales";
@@ -48,6 +49,7 @@ export default function Home() {
           renderItem={({ item }) => <AnimalCard animal={item} />}
         />
       )}
+
     </SafeAreaView>
   );
 }
@@ -61,8 +63,14 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     gap: 15,
-    paddingHorizontal: "5%",
-    marginTop: Platform.OS === "ios" ? "3%" : "10%",
-    paddingBottom: Platform.OS === "ios" ? "15%" : "28%",
+    //paddingHorizontal: "5%",
+    //marginTop: Platform.OS === "ios" ? "3%" : "10%",
+    //paddingBottom: Platform.OS === "ios" ? "15%" : "28%",
+    paddingHorizontal: Platform.OS === "android" ? "5%" : "25%",
+    //Ojo con esto
+    // marginTop: Platform.OS === "ios" ? "3%" : "10%",
+    // paddingBottom: Platform.OS === "ios" ? "15%" : "28%",
+    marginTop: Platform.OS === "android" ? "10%" : "3%",
+    paddingBottom: Platform.OS === "android" ? "15%" : "10%",
   },
 });

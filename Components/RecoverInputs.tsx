@@ -80,17 +80,18 @@ export default function RecoverInputs() {
 const fontSizes = 20;
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    marginTop: "10%",
+    flexDirection: "column",
+    width: "65%",
+    gap: 15,
+    alignSelf: "center",
+  },
   mainImage: {
     width: 200,
     height: 200,
     borderRadius: 100,
     alignSelf: "center",
-  },
-  mainContainer: {
-    display: "flex",
-    flexDirection: "column",
-    width: "65%",
-    gap: 15,
   },
   texts: {
     fontSize: fontSizes,

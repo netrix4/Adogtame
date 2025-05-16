@@ -1,6 +1,7 @@
 import { StyleSheet, Text, Image, View } from "react-native";
 import React from "react";
 
+import pedillosImg from "../assets/pedillos.jpg";
 
 type Animal = {
   nombre: string;
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
   animalCard: {
     flexDirection: "row",
     width: "100%",
+
     borderRadius: 15,
     backgroundColor: "#D9D9D9",
     padding: 10,
@@ -45,9 +47,12 @@ const styles = StyleSheet.create({
   },
   animalImage: {
     borderRadius: 15,
-    width: 140,
-    height: 140,
-    backgroundColor: "#ccc",
+
+    width: "25%",
+    maxWidth: 100,
+    height: "100%",
+    alignSelf: "flex-start",
+
   },
   animalQuickInfo: {
     flex: 1,

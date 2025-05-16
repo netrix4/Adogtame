@@ -15,6 +15,9 @@ export default function AuthGate({ children }: AuthGateProps) {
     if (!loading && !session) {
       navigation.navigate("Login" as never); // navegamos si no hay sesión
     }
+    // if (session) {
+    //   navigation.navigate("dashboard" as never);
+    // }
   }, [loading, session]);
 
   if (loading) {

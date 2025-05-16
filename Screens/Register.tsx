@@ -4,33 +4,29 @@ import {
   SafeAreaView,
   View,
   Image,
-  Platform,
-  TouchableOpacity,
-  Text,
 } from "react-native";
 import React from "react";
 import RegisterInputs from "../Components/RegisterInputs";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../hooks/useAuth";
 
-export default function Login() {
+export default function Register() {
   const navigation = useNavigation();
-  return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      // behavior={Platform.OS === "ios" ? "position" : "height"}
-      behavior={"position"}
-    >
-      <SafeAreaView>
-        <View style={styles.mainContainer}>
-          <Image
-            style={styles.mainImage}
-            source={require("../assets/Original.jpg")}
-          />
-          <RegisterInputs />
-        </View>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
-  );
+  const { session, loading } = useAuth();
+
+  if (session) {
+    navigation.navigate("DashBoard" as never);
+  } else {
+    return (
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={"position"}>
+        <SafeAreaView>
+          <View style={styles.mainContainer}>
+            <RegisterInputs />
+          </View>
+        </SafeAreaView>
+      </KeyboardAvoidingView>
+    );
+  }
 }
 const fontSizes = 20;
 
@@ -39,10 +35,9 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     height: "100%",
-    justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 20,
-    // gap: 30,
+    gap: 30,
+    justifyContent: "space-evenly",
   },
   mainImage: {
     width: 200,

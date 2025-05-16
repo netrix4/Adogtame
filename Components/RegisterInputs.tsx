@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import {
   Text,
+  Image,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -8,7 +9,7 @@ import {
   Modal,
   Alert,
 } from "react-native";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { supabase } from "../lib/supabase";
 
@@ -28,29 +29,77 @@ export default function RegisterInputs() {
   const fourthInputRef = useRef(null);
   const fifthInputRef = useRef(null);
 
-  const handleRegister = async () => {
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          nombre,
-          telefono,
-          direccion,
-          tipo_usuario: 'adoptante'
-        },
-      },
-    });
+  const validEmailRegex =
+    /^([a-zA-Z]+([0-9]{1,8})?)@((gmail)|(ite)|(hotmail)|(outlook)).((edu).)?(mx|com)$/;
 
-    if (error) {
-      Alert.alert("Error al registrar", error.message);
-    } else {
-      setShowModal(true);
+  const validPassRegex = /(?=.*[A-Z]).{4,}/gm;
+  const validCellPhone = /^([0-9]){10,10}$/gm;
+  const validAddress =
+    /^(([a-zA-Z0-9 ]+){0,5}, ?#?[0-9]+), ?([a-zA-Z0-9]+), ?([a-zA-Z0-9]+) ?$/gm;
+
+  const handleRegister = async () => {
+    let validationResults: Boolean[] = [];
+
+    validationResults.push(validEmailRegex.test(email));
+    validationResults.push(validPassRegex.test(password));
+    validationResults.push(validCellPhone.test(telefono));
+    validationResults.push(validAddress.test(direccion));
+
+    const isAllOk = (): Boolean => {
+      validationResults.forEach((result: Boolean) => {
+        if (result == false) {
+          return result;
+        }
+      });
+      return true;
+    };
+    if (isAllOk()) {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            nombre,
+            telefono,
+            direccion,
+            tipo_usuario: "adoptante",
+          },
+        },
+      });
+      if (error) {
+        Alert.alert("Error al registrar", error.message);
+      } else {
+        setShowModal(true);
+      }
+    }
+  };
+
+  const onEmailchange = (changingString: string) => {
+    setEmail(changingString);
+  };
+  const onPasswordChange = (changingPass: string) => {
+    setPassword(changingPass);
+  };
+  const onNameChange = (changingName: string) => {
+    if (!/([0-9])/gm.test(changingName)) {
+      setNombre(changingName);
+    }
+  };
+  const onDireccionChange = (changingAddress: string) => {
+    setDireccion(changingAddress);
+  };
+  const onCellPhoneNumberChange = (changingCell: string) => {
+    if (!/([a-zA-Z])/gm.test(changingCell)) {
+      setTelefono(changingCell);
     }
   };
 
   return (
     <View style={styles.mainContainer}>
+      <Image
+        style={styles.mainImage}
+        source={require("../assets/Original.jpg")}
+      />
       <Text style={styles.mainTitleText}>Adogtame 🐾</Text>
       <View style={styles.inputsContainer}>
         <View style={styles.emailGeneralContainer}>
@@ -60,7 +109,7 @@ export default function RegisterInputs() {
             returnKeyType="next"
             onSubmitEditing={() => secondInputRef?.current?.focus()}
             placeholder="nombre completo"
-            onChangeText={setNombre}
+            onChangeText={onNameChange}
             value={nombre}
             style={styles.emailInput}
           />
@@ -72,11 +121,17 @@ export default function RegisterInputs() {
             returnKeyType="next"
             onSubmitEditing={() => thirdInputRef?.current?.focus()}
             placeholder="10 dígitos"
+            maxLength={10}
             keyboardType="number-pad"
-            onChangeText={setTelefono}
+            onChangeText={onCellPhoneNumberChange}
             value={telefono}
             style={styles.emailInput}
           />
+          <Text style={styles.invalidField}>
+            {validCellPhone.test(telefono) == false
+              ? "Número de télefono inválido"
+              : ""}
+          </Text>
         </View>
         <View style={styles.emailGeneralContainer}>
           <Text style={styles.texts}>Correo Electrónico</Text>
@@ -86,10 +141,15 @@ export default function RegisterInputs() {
             onSubmitEditing={() => fourthInputRef?.current?.focus()}
             placeholder="ejemplo@gmail.com"
             keyboardType="email-address"
-            onChangeText={setEmail}
+            onChangeText={onEmailchange}
             value={email}
             style={styles.emailInput}
           />
+          <Text style={styles.invalidField}>
+            {validEmailRegex.test(email) == false
+              ? "Correo electrónico inválido"
+              : ""}
+          </Text>
         </View>
         <View style={styles.emailGeneralContainer}>
           <Text style={styles.texts}>Dirección</Text>
@@ -98,7 +158,7 @@ export default function RegisterInputs() {
             returnKeyType="next"
             onSubmitEditing={() => fifthInputRef?.current?.focus()}
             placeholder="calle, num, colonia, ciudad"
-            onChangeText={setDireccion}
+            onChangeText={onDireccionChange}
             value={direccion}
             style={styles.emailInput}
           />
@@ -111,7 +171,7 @@ export default function RegisterInputs() {
             secureTextEntry={hidePassword}
             placeholder="contraseña"
             value={password}
-            onChangeText={setPassword}
+            onChangeText={onPasswordChange}
             style={styles.emailInput}
           />
           <TouchableOpacity
@@ -125,6 +185,11 @@ export default function RegisterInputs() {
             />
           </TouchableOpacity>
         </View>
+        <Text style={styles.invalidField}>
+          {validPassRegex.test(password) == false
+            ? "Contraseña incorrecta; usa al menos una letra mayuscula y mas de 4 letras"
+            : ""}
+        </Text>
       </View>
 
       <View style={styles.loginButtonContainer}>
@@ -165,10 +230,17 @@ const fontSizes = 20;
 
 const styles = StyleSheet.create({
   mainContainer: {
-    display: "flex",
+    marginTop: "10%",
     flexDirection: "column",
     width: "65%",
     gap: 15,
+    alignSelf: "center",
+  },
+  mainImage: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    alignSelf: "center",
   },
   texts: {
     fontSize: fontSizes,
@@ -248,7 +320,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 15,
   },
-
   acceptText: {
     fontSize: fontSizes * 1.1,
     textAlign: "center",
@@ -263,5 +334,8 @@ const styles = StyleSheet.create({
   acceptButtonText: {
     color: "white",
     fontSize: fontSizes,
+  },
+  invalidField: {
+    color: "red",
   },
 });
