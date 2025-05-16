@@ -8,18 +8,16 @@ export default function Home() {
   const [selectedTipo, setSelectedTipo] = useState("");
   const [selectedEdad, setSelectedEdad] = useState("");
   const [selectedTamano, setSelectedTamano] = useState("");
-  const [selectedColor, setSelectedColor] = useState("");
-
+  
   const [filtros, setFiltros] = useState({});
 
   useEffect(() => {
     setFiltros({
       tipo: selectedTipo,
       edad: selectedEdad,
-      tamano: selectedTamano,
-      color: selectedColor,
+      tamaño: selectedTamano,
     });
-  }, [selectedTipo, selectedEdad, selectedTamano, selectedColor]);
+  }, [selectedTipo, selectedEdad, selectedTamano]);
 
   const { animales, loading } = useFiltroAnimales(filtros);
 
@@ -42,9 +40,6 @@ export default function Home() {
               selectedTamano={selectedTamano}
               onTamanoChange={setSelectedTamano}
 
-              selectedColor={selectedColor}
-              onColorChange={setSelectedColor}
-              
               setFiltros={setFiltros}  
             />
           }

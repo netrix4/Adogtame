@@ -10,8 +10,6 @@ type Props = {
   onEdadChange: (edad: string) => void;
   selectedTamano: string;
   onTamanoChange: (tamano: string) => void;
-  selectedColor: string;
-  onColorChange: (color: string) => void;
   setFiltros: React.Dispatch<React.SetStateAction<{}>>; 
 };
 
@@ -22,15 +20,12 @@ const ListHeaderHome = ({
   onEdadChange,
   selectedTamano,
   onTamanoChange,
-  selectedColor,
-  onColorChange,
   setFiltros,
 }: Props) => {
   const handleLimpiarFiltros = () => {
     onTipoChange("");
     onEdadChange("");
     onTamanoChange("");
-    onColorChange("");
     setFiltros({});
   };
 
@@ -73,20 +68,6 @@ const ListHeaderHome = ({
           { label: "Pequeño", value: "Pequeño" },
           { label: "Mediano", value: "Mediano" },
           { label: "Grande", value: "Grande" },
-        ]}
-      />
-
-      <Filtro
-        label="Color"
-        selectedValue={selectedColor}
-        onValueChange={onColorChange}
-        options={[
-          { label: "Todos", value: "" },
-          { label: "Negro", value: "Negro" },
-          { label: "Blanco", value: "Blanco" },
-          { label: "Marrón", value: "Marrón" },
-          { label: "Gris", value: "Gris" },
-          { label: "Dorado", value: "Dorado" },
         ]}
       />
 
