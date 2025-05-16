@@ -5,7 +5,7 @@ import {
   View,
   Platform,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import LoginInputs from "../Components/LoginInputs";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../hooks/useAuth";
@@ -14,8 +14,15 @@ export default function Login() {
   const navigation = useNavigation();
   const { session, loading } = useAuth();
 
+  useEffect(() => {
+    if (session) {
+      navigation.navigate("DashBoard" as never);
+    }
+  }, [session]);
+
   if (session) {
-    navigation.navigate("DashBoard" as never);
+    // navigation.navigate("DashBoard" as never);
+    return null;
   } else {
     return (
       <KeyboardAvoidingView
