@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import {Text, StyleSheet, View, SafeAreaView, FlatList, Platform, ActivityIndicator,} from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  SafeAreaView,
+  FlatList,
+  Platform,
+  ActivityIndicator,
+  useWindowDimensions,
+} from "react-native";
 
 import AnimalCard from "./AnimalCard";
 import ListHeaderHome from "./ListHeaderHome";
@@ -9,8 +18,9 @@ export default function Home() {
   const [selectedTipo, setSelectedTipo] = useState("");
   const [selectedEdad, setSelectedEdad] = useState("");
   const [selectedTamano, setSelectedTamano] = useState("");
-  
+
   const [filtros, setFiltros] = useState({});
+  const { width, height } = useWindowDimensions();
 
   useEffect(() => {
     setFiltros({
@@ -28,20 +38,20 @@ export default function Home() {
         <ActivityIndicator size="large" style={{ marginTop: 20 }} />
       ) : (
         <FlatList
-          style={styles.mainContainer}
+          style={[
+            styles.mainContainer,
+            { height: Platform.OS == "web" ? height : "100%" },
+          ]}
           contentContainerStyle={styles.flatListContentStyle}
           ListHeaderComponent={
             <ListHeaderHome
               selectedTipo={selectedTipo}
               onTipoChange={setSelectedTipo}
-
               selectedEdad={selectedEdad}
               onEdadChange={setSelectedEdad}
-
               selectedTamano={selectedTamano}
               onTamanoChange={setSelectedTamano}
-
-              setFiltros={setFiltros}  
+              setFiltros={setFiltros}
             />
           }
           data={animales}
@@ -49,7 +59,6 @@ export default function Home() {
           renderItem={({ item }) => <AnimalCard animal={item} />}
         />
       )}
-
     </SafeAreaView>
   );
 }
