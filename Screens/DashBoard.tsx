@@ -5,6 +5,7 @@ import Home from "../Components/Home";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, View } from "react-native";
+import Resources from "../Components/Resources";
 
 const Tab = createBottomTabNavigator();
 
@@ -52,6 +53,15 @@ export default function DashBoard() {
               iconName="heart-outline"
               isFocused={focused}
             />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Resources"
+        component={Resources}
+        options={{
+          tabBarIcon: ({ focused }: any) => (
+            <IsSelectedTabBarIcon iconName="book-outline" isFocused={focused} />
           ),
         }}
       />
