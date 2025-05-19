@@ -38,7 +38,7 @@ export default function Home() {
         <FlatList
           style={[
             styles.mainContainer,
-            { height: Platform.OS == "web" ? height : "100%" },
+            { height: Platform.OS == "web" ? height * 0.92 : "100%" },
           ]}
           contentContainerStyle={styles.flatListContentStyle}
           ListHeaderComponent={
@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
     gap: 15,
     paddingHorizontal: Platform.OS === "android" ? "5%" : "25%",
     marginTop: Platform.OS === "android" ? "10%" : "3%",
-    paddingBottom: Platform.OS === "android" ? "15%" : "10%",
+    paddingBottom: "1%",
   },
 });

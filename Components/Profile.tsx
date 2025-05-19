@@ -37,7 +37,7 @@ export default function Profile() {
       <View
         style={[
           styles.mainContainer,
-          { height: Platform.OS != "web" ? "100%" : height },
+          { height: Platform.OS != "web" ? "100%" : height * 0.92 },
         ]}
       >
         <View style={styles.profileFieldsCotianer}>

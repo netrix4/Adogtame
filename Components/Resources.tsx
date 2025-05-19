@@ -16,7 +16,7 @@ export default function Resources() {
     <View
       style={[
         styles.mainContainer,
-        { height: Platform.OS == "web" ? height : "100%" },
+        { height: Platform.OS == "web" ? height * 0.92 : "100%" },
       ]}
     >
       <ListHeaderResources></ListHeaderResources>
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: Platform.OS === "android" ? "5%" : "25%",
     paddingTop: Platform.OS === "android" ? "10%" : "3%",
+    paddingBottom: "1%",
     gap: "5%",
   },
   scrollStyle: {},
@@ -106,8 +107,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 22,
     display: "flex",
     flexDirection: "column",
-    marginBottom: Platform.OS === "android" ? "15%" : "20%",
-    // height: "100%",
+    marginBottom: "5%",
+    // height:'100%'
   },
   textContentTitle: {
     color: "#33658A",
