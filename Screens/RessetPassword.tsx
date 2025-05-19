@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontSize: 20,
-    color: "white",
+    color: "#000",
   },
   emailInput: {
     display: "flex",

@@ -124,6 +124,6 @@ const styles = StyleSheet.create({
   },
   recoverText: {
     fontSize: fontSizes,
-    color: "white",
+    color: "#000",
   },
 });

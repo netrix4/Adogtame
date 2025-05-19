@@ -61,7 +61,7 @@ export default function Profile() {
               <Ionicons
                 name="log-out-outline"
                 size={fontSizes}
-                color={"white"}
+                color={"#000"}
               />
             </TouchableOpacity>
           </View>
@@ -129,6 +129,6 @@ const styles = StyleSheet.create({
   },
   logoutText: {
     fontSize: fontSizes,
-    color: "#fff",
+    color: "#000",
   },
 });

@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontSize: fontSizes,
-    color: "white",
+    color: "#000",
   },
 
   recoverTextsContainer: {
