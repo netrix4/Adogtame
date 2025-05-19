@@ -1,8 +1,6 @@
 import { StyleSheet, Text, Image, View } from "react-native";
 import React from "react";
 
-import pedillosImg from "../assets/pedillos.jpg";
-
 type Animal = {
   nombre: string;
   edad: number;
@@ -14,11 +12,14 @@ type Animal = {
   sexo: string;
 };
 
-
 export default function AnimalCard({ animal }: { animal: Animal }) {
   return (
     <View style={styles.animalCard}>
-      <Image source={{ uri: animal.foto_url }} style={styles.animalImage} resizeMode="cover"/>
+      <Image
+        source={{ uri: animal.foto_url }}
+        style={styles.animalImage}
+        resizeMode="cover"
+      />
 
       <View style={styles.animalQuickInfo}>
         <Text style={styles.quickInfoText}>Nombre: {animal.nombre}</Text>
@@ -38,9 +39,10 @@ const styles = StyleSheet.create({
   animalCard: {
     flexDirection: "row",
     width: "100%",
-
     borderRadius: 15,
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "#F5F0E1",
+    borderColor: "#C9B892",
+    borderWidth: 1,
     padding: 10,
     gap: 10,
     alignItems: "center",
@@ -52,7 +54,6 @@ const styles = StyleSheet.create({
     maxWidth: 100,
     height: "100%",
     alignSelf: "flex-start",
-
   },
   animalQuickInfo: {
     flex: 1,

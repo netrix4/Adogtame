@@ -13,7 +13,7 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { supabase } from "../lib/supabase";
 import { CommonActions, useNavigation } from "@react-navigation/native";
-import pedillosImg from "../assets/pedillos.jpg";
+import logo from "../assets/Logo.svg";
 
 export default function Profile() {
   const { width, height } = useWindowDimensions();
@@ -43,7 +43,7 @@ export default function Profile() {
         <View style={styles.profileFieldsCotianer}>
           <View style={styles.profilePhotoContainer}>
             <Image
-              source={pedillosImg}
+              source={logo}
               style={styles.profilePhotoImage}
               alt="No Photo"
             />
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
   logoutButton: {
     flexDirection: "row",
-    backgroundColor: "#33658A",
+    backgroundColor: "#C9B892",
     width: "100%",
     paddingVertical: 10,
     borderRadius: 10,
@@ -129,6 +129,6 @@ const styles = StyleSheet.create({
   },
   logoutText: {
     fontSize: fontSizes,
-    color: "white",
+    color: "#fff",
   },
 });

@@ -19,7 +19,7 @@ export default function DashBoard() {
       // the selected icon component
       return (
         <View style={styles.selectedIcon}>
-          <Ionicons name={iconName} color={"#F28C28"} size={iconSizes} />
+          <Ionicons name={iconName} color={"#E6D8B7"} size={iconSizes} />
         </View>
       );
     }
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     height: "8%",
-    backgroundColor: "#F28C28",
+    backgroundColor: "#E6D8B7",
   },
   selectedIcon: {
     display: "flex",
