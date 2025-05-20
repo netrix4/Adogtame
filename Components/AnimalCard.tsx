@@ -1,24 +1,18 @@
-import { StyleSheet, Text, Image, View } from "react-native";
+import { StyleSheet, Text, Image, View, TouchableOpacity } from "react-native";
 import React from "react";
+import IAnimalCardProps from "../Interfaces/IAnimalCardProps";
 
-import pedillosImg from "../assets/pedillos.jpg";
-
-type Animal = {
-  nombre: string;
-  edad: number;
-  raza: string;
-  foto_url: string;
-  descripcion: string;
-  tipo: string;
-  tamaño: string;
-  sexo: string;
-};
-
-
-export default function AnimalCard({ animal }: { animal: Animal }) {
+export default function AnimalCard({ animal, onViewMore }: IAnimalCardProps) {
+  const onViewMoreDetails = () => {
+    onViewMore(animal);
+  };
   return (
     <View style={styles.animalCard}>
-      <Image source={{ uri: animal.foto_url }} style={styles.animalImage} resizeMode="cover"/>
+      <Image
+        source={{ uri: animal.foto_url }}
+        style={styles.animalImage}
+        resizeMode="cover"
+      />
 
       <View style={styles.animalQuickInfo}>
         <Text style={styles.quickInfoText}>Nombre: {animal.nombre}</Text>
@@ -27,20 +21,24 @@ export default function AnimalCard({ animal }: { animal: Animal }) {
         <Text style={styles.quickInfoText}>Sexo: {animal.sexo}</Text>
         <Text style={styles.quickInfoText}>Edad: {animal.edad}</Text>
         <Text style={styles.quickInfoText}>Tamaño: {animal.tamaño}</Text>
+        <TouchableOpacity onPress={onViewMoreDetails}>
+          <Text style={styles.watchMoreText}>Ver mas</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-const fontSizes = 16;
+const fontSizes = 20;
 
 const styles = StyleSheet.create({
   animalCard: {
     flexDirection: "row",
     width: "100%",
-
     borderRadius: 15,
-    backgroundColor: "#D9D9D9",
+    backgroundColor: "#F5F0E1",
+    borderColor: "#C9B892",
+    borderWidth: 1,
     padding: 10,
     gap: 10,
     alignItems: "center",
@@ -52,7 +50,6 @@ const styles = StyleSheet.create({
     maxWidth: 100,
     height: "100%",
     alignSelf: "flex-start",
-
   },
   animalQuickInfo: {
     flex: 1,

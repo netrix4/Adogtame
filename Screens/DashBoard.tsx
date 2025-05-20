@@ -5,6 +5,7 @@ import Home from "../Components/Home";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, View } from "react-native";
+import Resources from "../Components/Resources";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +20,7 @@ export default function DashBoard() {
       // the selected icon component
       return (
         <View style={styles.selectedIcon}>
-          <Ionicons name={iconName} color={"#F28C28"} size={iconSizes} />
+          <Ionicons name={iconName} color={"#E6D8B7"} size={iconSizes} />
         </View>
       );
     }
@@ -56,6 +57,15 @@ export default function DashBoard() {
         }}
       />
       <Tab.Screen
+        name="Resources"
+        component={Resources}
+        options={{
+          tabBarIcon: ({ focused }: any) => (
+            <IsSelectedTabBarIcon iconName="book-outline" isFocused={focused} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Profile"
         component={Profile}
         options={{
@@ -78,7 +88,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     height: "8%",
-    backgroundColor: "#F28C28",
+    backgroundColor: "#E6D8B7",
   },
   selectedIcon: {
     display: "flex",

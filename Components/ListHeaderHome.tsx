@@ -1,7 +1,7 @@
 import { StyleSheet, Text, Image, View, Pressable } from "react-native";
 import React from "react";
 import { Picker } from "@react-native-picker/picker";
-import adogtameImg from "../assets/Original.jpg";
+import logo from "../assets/Logo.svg";
 
 type Props = {
   selectedTipo: string;
@@ -10,7 +10,7 @@ type Props = {
   onEdadChange: (edad: string) => void;
   selectedTamano: string;
   onTamanoChange: (tamano: string) => void;
-  setFiltros: React.Dispatch<React.SetStateAction<{}>>; 
+  setFiltros: React.Dispatch<React.SetStateAction<{}>>;
 };
 
 const ListHeaderHome = ({
@@ -32,7 +32,7 @@ const ListHeaderHome = ({
   return (
     <View style={styles.headerContainer}>
       <View style={styles.mainTitleContainer}>
-        <Image source={adogtameImg} style={styles.adogtameImg} />
+        <Image source={logo} style={styles.adogtameImg} />
         <Text style={styles.adogtameTitle}>Adogtame 🐾</Text>
       </View>
 
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   filterButton: {
-    backgroundColor: "black",
+    backgroundColor: "#C9B892",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   filterButtonText: {
-    color: "white",
+    color: "#000",
     fontSize: 16,
     fontWeight: "bold",
   },

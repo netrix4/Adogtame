@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   loginButton: {
-    backgroundColor: "#33658A",
+    backgroundColor: "#C9B892",
     width: "100%",
     paddingVertical: 10,
     borderRadius: 10,
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   emailInput: {
     display: "flex",
-    borderColor: "orange",
+    borderColor: "#C9B892",
     borderWidth: 2,
     borderRadius: 10,
     padding: 5,

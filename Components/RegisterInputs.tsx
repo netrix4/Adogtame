@@ -12,6 +12,7 @@ import {
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { supabase } from "../lib/supabase";
+import logo from "../assets/Logo.svg";
 
 export default function RegisterInputs() {
   const navigation = useNavigation();
@@ -38,22 +39,13 @@ export default function RegisterInputs() {
     /^(([a-zA-Z0-9 ]+){0,5}, ?#?[0-9]+), ?([a-zA-Z0-9]+), ?([a-zA-Z0-9]+) ?$/gm;
 
   const handleRegister = async () => {
-    let validationResults: Boolean[] = [];
+    const isAllOk =
+      validEmailRegex.test(email) &&
+      validPassRegex.test(password) &&
+      validCellPhone.test(telefono) &&
+      validAddress.test(direccion);
 
-    validationResults.push(validEmailRegex.test(email));
-    validationResults.push(validPassRegex.test(password));
-    validationResults.push(validCellPhone.test(telefono));
-    validationResults.push(validAddress.test(direccion));
-
-    const isAllOk = (): Boolean => {
-      validationResults.forEach((result: Boolean) => {
-        if (result == false) {
-          return result;
-        }
-      });
-      return true;
-    };
-    if (isAllOk()) {
+    if (isAllOk) {
       const { error } = await supabase.auth.signUp({
         email,
         password,
@@ -96,10 +88,7 @@ export default function RegisterInputs() {
 
   return (
     <View style={styles.mainContainer}>
-      <Image
-        style={styles.mainImage}
-        source={require("../assets/Original.jpg")}
-      />
+      <Image style={styles.mainImage} source={logo} />
       <Text style={styles.mainTitleText}>Adogtame 🐾</Text>
       <View style={styles.inputsContainer}>
         <View style={styles.emailGeneralContainer}>
@@ -267,7 +256,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   loginButton: {
-    backgroundColor: "#33658A",
+    backgroundColor: "#C9B892",
     width: "100%",
     paddingVertical: 10,
     borderRadius: 10,
@@ -286,7 +275,7 @@ const styles = StyleSheet.create({
   },
   emailInput: {
     display: "flex",
-    borderColor: "orange",
+    borderColor: "#C9B892",
     borderWidth: 2,
     borderRadius: 10,
     padding: 5,
@@ -325,14 +314,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   acceptButton: {
-    backgroundColor: "#F28C28",
+    backgroundColor: "#C9B892",
     width: "70%",
     alignItems: "center",
     borderRadius: 5,
     paddingVertical: 8,
   },
   acceptButtonText: {
-    color: "white",
+    color: "#fff",
     fontSize: fontSizes,
   },
   invalidField: {

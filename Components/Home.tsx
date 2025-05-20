@@ -1,26 +1,48 @@
 import React, { useEffect, useState } from "react";
 import {
-  Text,
   StyleSheet,
-  View,
   SafeAreaView,
   FlatList,
   Platform,
   ActivityIndicator,
   useWindowDimensions,
+  Modal,
 } from "react-native";
 
 import AnimalCard from "./AnimalCard";
 import ListHeaderHome from "./ListHeaderHome";
 import { useFiltroAnimales } from "../hooks/useFiltroAnimales";
+import AnimalDetails from "./AnimalDetails";
+import Animal from "../Interfaces/IAnimal";
 
 export default function Home() {
   const [selectedTipo, setSelectedTipo] = useState("");
   const [selectedEdad, setSelectedEdad] = useState("");
   const [selectedTamano, setSelectedTamano] = useState("");
 
+  const [isViewingDetails, setIsViewingDetails] = useState(false);
+  const [detailingAnimal, setDetailingAnimal] = useState<Animal>({
+    nombre: "",
+    edad: 0,
+    raza: "",
+    foto_url: "",
+    descripcion: "",
+    tipo: "",
+    tamaño: "",
+    sexo: "",
+  });
+
   const [filtros, setFiltros] = useState({});
   const { width, height } = useWindowDimensions();
+
+  const onViewMorePress = (detalingAnimal: Animal) => {
+    setDetailingAnimal(detalingAnimal);
+    setIsViewingDetails(true);
+  };
+
+  const OnHideDetails = () => {
+    setIsViewingDetails(false);
+  };
 
   useEffect(() => {
     setFiltros({
@@ -37,27 +59,38 @@ export default function Home() {
       {loading ? (
         <ActivityIndicator size="large" style={{ marginTop: 20 }} />
       ) : (
-        <FlatList
-          style={[
-            styles.mainContainer,
-            { height: Platform.OS == "web" ? height : "100%" },
-          ]}
-          contentContainerStyle={styles.flatListContentStyle}
-          ListHeaderComponent={
-            <ListHeaderHome
-              selectedTipo={selectedTipo}
-              onTipoChange={setSelectedTipo}
-              selectedEdad={selectedEdad}
-              onEdadChange={setSelectedEdad}
-              selectedTamano={selectedTamano}
-              onTamanoChange={setSelectedTamano}
-              setFiltros={setFiltros}
-            />
-          }
-          data={animales}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <AnimalCard animal={item} />}
-        />
+        <>
+          <FlatList
+            style={[
+              styles.mainContainer,
+              { height: Platform.OS == "web" ? height * 0.92 : "100%" },
+            ]}
+            contentContainerStyle={styles.flatListContentStyle}
+            ListHeaderComponent={
+              <ListHeaderHome
+                selectedTipo={selectedTipo}
+                onTipoChange={setSelectedTipo}
+                selectedEdad={selectedEdad}
+                onEdadChange={setSelectedEdad}
+                selectedTamano={selectedTamano}
+                onTamanoChange={setSelectedTamano}
+                setFiltros={setFiltros}
+              />
+            }
+            data={animales}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <AnimalCard animal={item} onViewMore={onViewMorePress} />
+            )}
+          />
+          <AnimalDetails
+            isViewingDetails={isViewingDetails}
+            detailingAnimal={detailingAnimal}
+            // changeEditHandler={changeEditHandler}
+            // onViewMore={onViewMorePress}
+            onHideDetails={OnHideDetails}
+          />
+        </>
       )}
     </SafeAreaView>
   );
@@ -67,19 +100,14 @@ const styles = StyleSheet.create({
   mainContainer: {
     height: "100%",
     width: "100%",
+    backgroundColor: "#fff",
   },
   flatListContentStyle: {
     display: "flex",
     flexDirection: "column",
     gap: 15,
-    //paddingHorizontal: "5%",
-    //marginTop: Platform.OS === "ios" ? "3%" : "10%",
-    //paddingBottom: Platform.OS === "ios" ? "15%" : "28%",
     paddingHorizontal: Platform.OS === "android" ? "5%" : "25%",
-    //Ojo con esto
-    // marginTop: Platform.OS === "ios" ? "3%" : "10%",
-    // paddingBottom: Platform.OS === "ios" ? "15%" : "28%",
     marginTop: Platform.OS === "android" ? "10%" : "3%",
-    paddingBottom: Platform.OS === "android" ? "15%" : "10%",
+    paddingBottom: "1%",
   },
 });

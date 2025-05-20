@@ -4,6 +4,8 @@ import {
   SafeAreaView,
   View,
   Image,
+  useWindowDimensions,
+  Platform,
 } from "react-native";
 import React from "react";
 import RegisterInputs from "../Components/RegisterInputs";
@@ -12,6 +14,7 @@ import { useAuth } from "../hooks/useAuth";
 
 export default function Register() {
   const navigation = useNavigation();
+  const { width, height } = useWindowDimensions();
   const { session, loading } = useAuth();
 
   if (session) {
@@ -20,7 +23,14 @@ export default function Register() {
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={"position"}>
         <SafeAreaView>
-          <View style={styles.mainContainer}>
+          <View
+            style={[
+              styles.mainContainer,
+              {
+                height: Platform.OS === "web" ? width : "100%",
+              },
+            ]}
+          >
             <RegisterInputs />
           </View>
         </SafeAreaView>
@@ -34,10 +44,10 @@ const styles = StyleSheet.create({
   mainContainer: {
     display: "flex",
     flexDirection: "column",
-    height: "100%",
+    backgroundColor: "#fff",
     alignItems: "center",
     gap: 30,
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
   },
   mainImage: {
     width: 200,

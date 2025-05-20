@@ -12,7 +12,7 @@ import React, { useState, useEffect, useRef } from "react";
 import * as Linking from "expo-linking";
 import { useNavigation } from "@react-navigation/native";
 import { supabase } from "../lib/supabase";
-import adogtameIcon from "../assets/Original.jpg";
+import adogtameIcon from "../assets/logo.svg";
 
 export default function ResetPassword() {
   const [newPassword, setNewPassword] = useState("");
@@ -21,7 +21,7 @@ export default function ResetPassword() {
   const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
   const [sessionReady, setSessionReady] = useState(false);
 
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation();
   const firstInputRef = useRef(null);
   const secondInputRef = useRef(null);
 
@@ -41,7 +41,10 @@ export default function ResetPassword() {
           });
 
           if (error) {
-            Alert.alert("Error al iniciar sesión de recuperación", error.message);
+            Alert.alert(
+              "Error al iniciar sesión de recuperación",
+              error.message
+            );
             return;
           }
 
@@ -57,7 +60,10 @@ export default function ResetPassword() {
 
   const handleChangePassword = async () => {
     if (!sessionReady) {
-      Alert.alert("Sesión no válida", "Intenta abrir el enlace de nuevo desde tu correo.");
+      Alert.alert(
+        "Sesión no válida",
+        "Intenta abrir el enlace de nuevo desde tu correo."
+      );
       return;
     }
 
@@ -82,14 +88,16 @@ export default function ResetPassword() {
 
     await supabase.auth.signOut();
 
+
     Alert.alert("Contraseña actualizada", "Inicia sesión con tu nueva contraseña.");
     setTimeout(() => navigation.replace("Login"), 500);
+
 
   };
 
   return (
     <View style={styles.mainContainer}>
-      <Image style={styles.mainImage} source={adogtameIcon} />
+      <Image style={styles.mainImage} source={logo} />
       <Text style={styles.mainTitleText}>Cambiar contraseña 🐾</Text>
       <View style={styles.inputsContainer}>
         <View style={styles.passwordGeneralContainer}>
@@ -142,7 +150,10 @@ export default function ResetPassword() {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.loginButton} onPress={handleChangePassword}>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={handleChangePassword}
+        >
           <Text style={styles.loginText}>Actualizar contraseña</Text>
         </TouchableOpacity>
       </View>
@@ -178,7 +189,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   loginButton: {
-    backgroundColor: "#33658A",
+    backgroundColor: "#C9B892",
     width: "100%",
     paddingVertical: 10,
     borderRadius: 10,
@@ -188,11 +199,11 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontSize: 20,
-    color: "white",
+    color: "#000",
   },
   emailInput: {
     display: "flex",
-    borderColor: "orange",
+    borderColor: "C9B892",
     borderWidth: 2,
     borderRadius: 10,
     padding: 5,

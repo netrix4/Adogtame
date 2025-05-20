@@ -12,7 +12,7 @@ import {
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { supabase } from "../lib/supabase";
-import adogtameIcon from "../assets/Original.jpg";
+import adogtameIcon from "../assets/Logo.svg";
 
 export default function LoginInputs() {
   const navigation = useNavigation();
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   },
   emailInput: {
     display: "flex",
-    borderColor: "orange",
+    borderColor: "#C9B892",
     borderWidth: 2,
     borderRadius: 10,
     padding: 5,
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   loginButton: {
-    backgroundColor: "#33658A",
+    backgroundColor: "#C9B892",
     width: "100%",
     paddingVertical: 10,
     borderRadius: 10,
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   loginText: {
-    color: "#fff",
+    color: "#000",
     fontSize: fontSizes,
     fontWeight: "500",
   },

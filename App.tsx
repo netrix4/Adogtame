@@ -1,16 +1,15 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, Platform, StatusBar } from "react-native";
+import { useEffect } from "react";
+import { Linking } from "react-native";
 import Login from "./Screens/Login";
 import DashBoard from "./Screens/DashBoard";
 import RecoverPass from "./Screens/RecoverPass";
 import Register from "./Screens/Register";
 import AuthGate from "./Components/AuthGate";
-//import NotFoundScreen from "./Screens/NotFoundScreen";
-import { useEffect } from 'react';
-import { Linking } from 'react-native';
+import NotFoundScreen from "./Screens/NotFoundScreen";
 import ResetPassword from "./Screens/RessetPassword";
-
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -32,9 +31,8 @@ export default function App() {
     },
   };
 
-  
   useEffect(() => {
-    Linking.getInitialURL().then(url => {
+    Linking.getInitialURL().then((url) => {
       console.log("App opened with URL:", url);
     });
   }, []);
@@ -62,6 +60,7 @@ export default function App() {
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
         <Stack.Screen name="Recover" component={RecoverPass} />
         <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="NotFound" component={NotFoundScreen} />
         <Stack.Screen name="DashBoard">
           {() => (
             <AuthGate>
@@ -69,7 +68,6 @@ export default function App() {
             </AuthGate>
           )}
         </Stack.Screen>
-
       </Stack.Navigator>
     </NavigationContainer>
   );

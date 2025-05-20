@@ -7,24 +7,31 @@ import {
   TouchableOpacity,
   Text,
   Platform,
+  useWindowDimensions,
 } from "react-native";
 import React from "react";
-import RecoverInputs from "../Components/RecoverInputs";
 import { useNavigation } from "@react-navigation/native";
 import RecoverEmailScreen from "../Components/RecoverEmailScreen";
 
 export default function RecoverPass() {
   const navigation = useNavigation();
+  const { width, height } = useWindowDimensions();
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === "android" ? "height" : "height"}
+      behavior={Platform.OS === "android" ? "height" : "position"}
     >
       <SafeAreaView>
-        <View style={styles.mainContainer}>
+        <View
+          style={[
+            styles.mainContainer,
+            {
+              height: Platform.OS === "web" ? height : "100%",
+            },
+          ]}
+        >
           <RecoverEmailScreen />
           <View style={styles.buttonNavigationContainer}>
-            
             <TouchableOpacity
               style={styles.recoverTextsContainer}
               onPress={() => {
@@ -48,11 +55,10 @@ const styles = StyleSheet.create({
   mainContainer: {
     display: "flex",
     flexDirection: "column",
-    // paddingVertical: "2%",
-    height: "100%",
     alignItems: "center",
     gap: 30,
-    justifyContent: "space-evenly",
+    // justifyContent: "space-between",
+    backgroundColor: "#fff",
   },
   buttonNavigationContainer: {
     width: "65%",
@@ -60,7 +66,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   loginButtonContainer: {
-    // alignItems: "center",
     width: "100%",
   },
   loginButton: {
@@ -74,7 +79,7 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontSize: fontSizes,
-    color: "white",
+    color: "#000",
   },
 
   recoverTextsContainer: {
