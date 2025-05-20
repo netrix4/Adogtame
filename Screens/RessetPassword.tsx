@@ -82,12 +82,9 @@ export default function ResetPassword() {
 
     await supabase.auth.signOut();
 
-    Alert.alert("Contraseña actualizada", "Inicia sesión con tu nueva contraseña.", [
-      {
-        text: "OK",
-        onPress: () => navigation.navigate("Login" as never),//as never
-      },
-    ]);
+    Alert.alert("Contraseña actualizada", "Inicia sesión con tu nueva contraseña.");
+    setTimeout(() => navigation.replace("Login"), 500);
+
   };
 
   return (
