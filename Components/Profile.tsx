@@ -14,10 +14,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { supabase } from "../lib/supabase";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import logo from "../assets/Logo.svg";
+import { useProfileData } from "../hooks/useProfileData";
 
 export default function Profile() {
   const { width, height } = useWindowDimensions();
   const navigation = useNavigation();
+  const { userMetaData, error, loading } = useProfileData();
 
   const handleLogOut = async () => {
     const { error } = await supabase.auth.signOut({ scope: "global" });
@@ -48,10 +50,27 @@ export default function Profile() {
               alt="No Photo"
             />
           </View>
-          <View style={styles.blankFiled} />
-          <View style={styles.blankFiled} />
-          <View style={styles.blankFiled} />
-          <View style={styles.blankFiled} />
+          <View style={styles.blankFiled}>
+            <Text style={styles.profileDataField}>
+              {loading ? "Loading..." : userMetaData?.nombre}
+            </Text>
+          </View>
+          <View style={styles.blankFiled}>
+            <Text style={styles.profileDataField}>
+              {loading ? "Loading..." : userMetaData?.telefono}
+            </Text>
+          </View>
+          <View style={styles.blankFiled}>
+            <Text style={styles.profileDataField}>
+              {loading ? "Loading..." : userMetaData?.email}
+            </Text>
+          </View>
+          <View style={styles.blankFiled}>
+            <Text style={styles.profileDataField}>
+              {loading ? "Loading..." : userMetaData?.direccion}
+            </Text>
+          </View>
+
           <View style={styles.logoutButtonContainer}>
             <TouchableOpacity
               onPress={handleLogOut}
@@ -103,15 +122,23 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   blankFiled: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "#D9D9D9",
     borderRadius: 10,
     height: 50,
     width: "100%",
   },
+
   profilePhotoImage: {
     width: 250,
     height: 250,
     borderRadius: 10,
+  },
+  profileDataField: {
+    fontSize: fontSizes,
   },
   logoutButtonContainer: {
     display: "flex",
