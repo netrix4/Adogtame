@@ -18,28 +18,28 @@ const fontSizes = 20;
 
 const styles = StyleSheet.create({
   mainTitleContainer: {
-    display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
   },
   genericTitleContainer: {
-    display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     alignItems: "center",
     width: "100%",
+    gap: 10
   },
   adogtameImg: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
   },
   adogtameTitle: {
-    fontSize: fontSizes * 1.7,
+    fontSize: fontSizes * 1.5,
+    fontWeight: "bold"
   },
   resourcesTitle: {
-    fontSize: fontSizes * 1.7,
-    fontWeight: "bold",
+    fontSize: fontSizes * 1.4,
+    fontWeight: "600",
   },
 });

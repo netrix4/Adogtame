@@ -15,14 +15,14 @@ export default function AnimalCard({ animal, onViewMore }: IAnimalCardProps) {
       />
 
       <View style={styles.animalQuickInfo}>
-        <Text style={styles.quickInfoText}>Nombre: {animal.nombre}</Text>
+        <Text style={styles.animalName}>{animal.nombre}</Text>
         <Text style={styles.quickInfoText}>Tipo: {animal.tipo}</Text>
         <Text style={styles.quickInfoText}>Raza: {animal.raza}</Text>
         <Text style={styles.quickInfoText}>Sexo: {animal.sexo}</Text>
         <Text style={styles.quickInfoText}>Edad: {animal.edad}</Text>
         <Text style={styles.quickInfoText}>Tamaño: {animal.tamaño}</Text>
         <TouchableOpacity onPress={onViewMoreDetails}>
-          <Text style={styles.watchMoreText}>Ver mas</Text>
+          <Text style={styles.watchMoreText}>Ver más</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -39,14 +39,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F0E1",
     borderColor: "#C9B892",
     borderWidth: 1,
-    padding: 10,
-    gap: 10,
+    padding: 12,
+    gap: 15,
     alignItems: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
+    marginBottom: 15,
   },
   animalImage: {
-    borderRadius: 15,
-
-    width: "25%",
+    borderRadius: 12,
+    width: "28%",
     maxWidth: 100,
     height: "100%",
     alignSelf: "flex-start",
@@ -54,19 +59,31 @@ const styles = StyleSheet.create({
   animalQuickInfo: {
     flex: 1,
     flexDirection: "column",
-    padding: 10,
+    gap: 2
+  },
+  animalName: {
+    fontSize: fontSizes + 2,
+    fontWeight: "bold",
+    marginBottom: 5,
+    color: "#333",
   },
   quickInfoText: {
-    fontWeight: "bold",
-    fontSize: fontSizes,
+   // fontWeight: "bold",
+    fontSize: fontSizes * 0.9,
     marginBottom: 2,
+    color: "#444"
   },
   watchMoreContainer: {
-    padding: 15,
-    justifyContent: "flex-end",
+    marginTop: 8,
+    alignSelf: "flex-start",
+    backgroundColor: "#33658A",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 6,
   },
   watchMoreText: {
     color: "#33658A",
-    fontSize: fontSizes,
+    fontSize: fontSizes * 0.85, 
+    fontWeight: "500",
   },
 });

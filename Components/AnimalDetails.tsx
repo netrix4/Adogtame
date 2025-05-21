@@ -74,6 +74,7 @@ const AnimalDetails = ({
           <TouchableOpacity
             onPress={() => {
               console.log("Agregar a favoritos");
+              
             }}
           >
             <Ionicons
@@ -91,49 +92,57 @@ const AnimalDetails = ({
 const fontSizes = 20;
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    display: "flex",
-    flexDirection: "column",
-  },
   modalOverlay: {
-    display: "flex",
-    flexDirection: "column",
+    flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalMainContent: {
     display: "flex",
-    flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
     padding: "2%",
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderWidth: 4,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderWidth: 3,
     backgroundColor: "#F5F0E1",
     borderColor: "#C9B892",
     gap: "2%",
   },
   closeModalButton: {
     position: "absolute",
-    right: 10,
-    top: 10,
+    right: 12,
+    top: 12,
+    backgroundColor: "#fff",
+    padding: 6,
+    borderRadius: 50,
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
   },
   animalDetailsTitle: {
-    fontSize: fontSizes * 1.8,
+    fontSize: fontSizes * 1.6,
     color: "#33658A",
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 10,
   },
   animalDetailsText: {
-    fontSize: fontSizes,
+    fontSize: fontSizes * 0.95,
     textAlign: "center",
+    color: "#444",
+    marginVertical: 2,
+
   },
   animalImage: {
     borderRadius: 15,
-    width: "65%",
-    height: "35%",
-    maxWidth: 350,
-    maxHeight: 350,
+    width: "80%",
+    height: 230,
+    maxWidth: 320,
+    marginVertical: 10,
     // maxWidth: 200,
   },
 });

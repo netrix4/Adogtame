@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     width: "auto",
     padding: 5,
     backgroundColor: "#D9D9D9",
-    borderRadius: 10,
+    borderRadius: 12,
   },
   blankFiled: {
     backgroundColor: "#D9D9D9",
@@ -121,14 +121,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#C9B892",
     width: "100%",
-    paddingVertical: 10,
+    paddingVertical: 12,
     borderRadius: 10,
-    marginVertical: 15,
+    marginVertical: 20,
     alignItems: "center",
     justifyContent: "center",
+    gap: 10
   },
   logoutText: {
-    fontSize: fontSizes,
+    fontSize: fontSizes * 0.95,
     color: "#000",
+    fontWeight: "600"
   },
 });
