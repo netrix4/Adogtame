@@ -87,7 +87,6 @@ export default function Home() {
             isViewingDetails={isViewingDetails}
             detailingAnimal={detailingAnimal}
             // changeEditHandler={changeEditHandler}
-            // onViewMore={onViewMorePress}
             onHideDetails={OnHideDetails}
           />
         </>

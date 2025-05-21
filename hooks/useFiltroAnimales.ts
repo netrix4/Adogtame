@@ -1,18 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
-
-type Animal = {
-  id: string;
-  nombre: string;
-  edad: number;
-  raza: string;
-  tamaño: string;
-  tipo: string;
-  color: string;
-  centro_id: string;
-  foto_url: string;
-  descripcion: string;
-};
+import IAnimal from "../Interfaces/IAnimal";
 
 export const useFiltroAnimales = (filtros: {
   tipo?: string;
@@ -23,7 +11,7 @@ export const useFiltroAnimales = (filtros: {
   descripcion?: string;
   edad?: string;
 }) => {
-  const [animales, setAnimales] = useState<Animal[]>([]);
+  const [animales, setAnimales] = useState<IAnimal[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,7 +21,8 @@ export const useFiltroAnimales = (filtros: {
       let query = supabase.from("animales").select("*");
 
       if (filtros.tipo) query = query.eq("tipo", filtros.tipo);
-      if (filtros.descripcion) query = query.ilike("descripcion", `%${filtros.descripcion}%`);
+      if (filtros.descripcion)
+        query = query.ilike("descripcion", `%${filtros.descripcion}%`);
       if (filtros.raza) query = query.eq("raza", filtros.raza);
       if (filtros.tamaño) query = query.eq("tamaño", filtros.tamaño);
       if (filtros.color) query = query.eq("color", filtros.color);
