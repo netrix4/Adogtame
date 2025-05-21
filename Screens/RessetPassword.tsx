@@ -12,7 +12,7 @@ import React, { useState, useEffect, useRef } from "react";
 import * as Linking from "expo-linking";
 import { useNavigation } from "@react-navigation/native";
 import { supabase } from "../lib/supabase";
-import adogtameIcon from "../assets/logo.svg";
+import logo from "../assets/Logo.svg";
 
 export default function ResetPassword() {
   const [newPassword, setNewPassword] = useState("");
@@ -88,11 +88,11 @@ export default function ResetPassword() {
 
     await supabase.auth.signOut();
 
-
-    Alert.alert("Contraseña actualizada", "Inicia sesión con tu nueva contraseña.");
+    Alert.alert(
+      "Contraseña actualizada",
+      "Inicia sesión con tu nueva contraseña."
+    );
     setTimeout(() => navigation.replace("Login"), 500);
-
-
   };
 
   return (

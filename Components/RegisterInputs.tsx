@@ -33,10 +33,10 @@ export default function RegisterInputs() {
   const validEmailRegex =
     /^([a-zA-Z]+([0-9]{1,8})?)@((gmail)|(ite)|(hotmail)|(outlook)).((edu).)?(mx|com)$/;
 
-  const validPassRegex = /(?=.*[A-Z]).{4,}/gm;
-  const validCellPhone = /^([0-9]){10,10}$/gm;
+  const validPassRegex = /(?=.*[A-Z]).{4,}/;
+  const validCellPhone = /([0-9]{10,10})+/;
   const validAddress =
-    /^(([a-zA-Z0-9 ]+){0,5}, ?#?[0-9]+), ?([a-zA-Z0-9]+), ?([a-zA-Z0-9]+) ?$/gm;
+    /^(([a-zA-Z0-9 ]+){0,5}), ?(#?[0-9]+), ?([a-zA-Z0-9 ]+), ?(\w+ ?)+$/;
 
   const handleRegister = async () => {
     const isAllOk =
@@ -58,6 +58,7 @@ export default function RegisterInputs() {
           },
         },
       });
+
       if (error) {
         Alert.alert("Error al registrar", error.message);
       } else {
@@ -81,7 +82,7 @@ export default function RegisterInputs() {
     setDireccion(changingAddress);
   };
   const onCellPhoneNumberChange = (changingCell: string) => {
-    if (!/([a-zA-Z])/gm.test(changingCell)) {
+    if (!/[^0-9]/gm.test(changingCell)) {
       setTelefono(changingCell);
     }
   };
@@ -151,6 +152,11 @@ export default function RegisterInputs() {
             value={direccion}
             style={styles.emailInput}
           />
+          <Text style={styles.invalidField}>
+            {validAddress.test(direccion) === false
+              ? "Formato de direccion invalido (calle, num, colonia, ciudad)"
+              : ""}
+          </Text>
         </View>
         <View style={styles.passwordGeneralContainer}>
           <Text style={styles.texts}>Contraseña</Text>
