@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, Platform, StatusBar } from "react-native";
 import { useEffect } from "react";
 import { Linking } from "react-native";
+
 import Login from "./Screens/Login";
 import DashBoard from "./Screens/DashBoard";
 import RecoverPass from "./Screens/RecoverPass";
@@ -11,12 +12,14 @@ import AuthGate from "./Components/AuthGate";
 import NotFoundScreen from "./Screens/NotFoundScreen";
 import ResetPassword from "./Screens/RessetPassword";
 
+import { FavoritesProvider } from "./contexts/FavoritesContext"; 
+
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   const linking = {
-    // prefixes: ["http://localhost:8081", "https://tusitio.com"],
-    prefixes: ["http://localhost:8081"],
+     // prefixes: ["http://localhost:8081", "https://tusitio.com"],
+      prefixes: ["http://localhost:8081"],
 
     config: {
       screens: {
@@ -36,40 +39,43 @@ export default function App() {
       console.log("App opened with URL:", url);
     });
   }, []);
+
   return (
-    <NavigationContainer linking={linking}>
-      <StatusBar />
-      <Stack.Navigator
-        initialRouteName="Login"
-        screenOptions={{
-          headerShown: false,
-          headerBlurEffect: "dark",
-          headerTransparent: Platform.select({
-            ios: true,
-            web: true,
-            android: false,
-          }),
-          headerTintColor: Platform.select({
-            ios: "white",
-            web: "white",
-            android: "dark",
-          }),
-        }}
-      >
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="ResetPassword" component={ResetPassword} />
-        <Stack.Screen name="Recover" component={RecoverPass} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="NotFound" component={NotFoundScreen} />
-        <Stack.Screen name="DashBoard">
-          {() => (
-            <AuthGate>
-              <DashBoard />
-            </AuthGate>
-          )}
-        </Stack.Screen>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <FavoritesProvider>
+      <NavigationContainer linking={linking}>
+        <StatusBar />
+        <Stack.Navigator
+          initialRouteName="Login"
+          screenOptions={{
+            headerShown: false,
+            headerBlurEffect: "dark",
+            headerTransparent: Platform.select({
+              ios: true,
+              web: true,
+              android: false,
+            }),
+            headerTintColor: Platform.select({
+              ios: "white",
+              web: "white",
+              android: "dark",
+            }),
+          }}
+        >
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="ResetPassword" component={ResetPassword} />
+          <Stack.Screen name="Recover" component={RecoverPass} />
+          <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="NotFound" component={NotFoundScreen} />
+          <Stack.Screen name="DashBoard">
+            {() => (
+              <AuthGate>
+                <DashBoard />
+              </AuthGate>
+            )}
+          </Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </FavoritesProvider>
   );
 }
 

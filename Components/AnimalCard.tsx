@@ -5,7 +5,8 @@ import IAnimalCardProps from "../Interfaces/IAnimalCardProps";
 export default function AnimalCard({ animal, onViewMore }: IAnimalCardProps) {
   const onViewMoreDetails = () => {
     onViewMore(animal);
-  };
+  }
+
   return (
     <View style={styles.animalCard}>
       <Image
@@ -21,8 +22,9 @@ export default function AnimalCard({ animal, onViewMore }: IAnimalCardProps) {
         <Text style={styles.quickInfoText}>Sexo: {animal.sexo}</Text>
         <Text style={styles.quickInfoText}>Edad: {animal.edad}</Text>
         <Text style={styles.quickInfoText}>Tamaño: {animal.tamaño}</Text>
+
         <TouchableOpacity onPress={onViewMoreDetails}>
-          <Text style={styles.watchMoreText}>Ver mas</Text>
+          <Text style={styles.watchMoreText}>Ver más</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -45,10 +47,9 @@ const styles = StyleSheet.create({
   },
   animalImage: {
     borderRadius: 15,
-
     width: "25%",
     maxWidth: 100,
-    height: "100%",
+    height: 100, // Altura fija para mantener proporción
     alignSelf: "flex-start",
   },
   animalQuickInfo: {
@@ -61,12 +62,9 @@ const styles = StyleSheet.create({
     fontSize: fontSizes,
     marginBottom: 2,
   },
-  watchMoreContainer: {
-    padding: 15,
-    justifyContent: "flex-end",
-  },
   watchMoreText: {
     color: "#33658A",
     fontSize: fontSizes,
+    marginTop: 8,
   },
 });

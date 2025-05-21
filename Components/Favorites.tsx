@@ -1,6 +1,5 @@
 import {
   Platform,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -10,100 +9,83 @@ import {
 import React, { useState } from "react";
 import ListHeaderFavorites from "./ListHeaderFavorites";
 import AnimalCard from "./AnimalCard";
-import Animal from "../Interfaces/IAnimal";
 import AnimalDetails from "./AnimalDetails";
+import { useFavorites } from "../contexts/FavoritesContext";
+import IAnimal from "../Interfaces/IAnimal";
 
-export default function Resources() {
-  const fixedAnimal: Animal = {
-    nombre: "Firulais",
-    edad: 99,
-    raza: "De todas",
-    foto_url:
-      "https://veras.mx/wp-content/uploads/2024/08/Perrito-hizo-el-drama-del-dia.jpg",
-    descripcion: "Animalito con mucho carino",
-    tipo: "Perro",
-    tamaño: "Pequeno",
-    sexo: "Hembra",
-  };
-  const { width, height } = useWindowDimensions();
-  const [isViewingDetails, setIsViewingDetails] = useState(false);
-  const [detailingAnimal, setDetailingAnimal] = useState<Animal>(fixedAnimal);
+export default function Favorites() {
+  const { width, height } = useWindowDimensions()
+  const { favorites } = useFavorites()
 
-  const onViewMorePress = (detailingAnimal: Animal) => {
-    setDetailingAnimal(detailingAnimal);
-    setIsViewingDetails(true);
+  const [isViewingDetails, setIsViewingDetails] = useState(false)
+  const [detailingAnimal, setDetailingAnimal] = useState<IAnimal | null>(null)
+
+  const onViewMorePress = (animal: IAnimal) => {
+    setDetailingAnimal(animal)
+    setIsViewingDetails(true)
   };
 
-  const OnHideDetails = () => {
-    setIsViewingDetails(false);
+  const onHideDetails = () => {
+    setIsViewingDetails(false)
+    setDetailingAnimal(null)
   };
 
   return (
     <View
       style={[
         styles.mainContainer,
-        { height: Platform.OS == "web" ? height * 0.92 : "100%" },
+        { height: Platform.OS === "web" ? height * 0.92 : "100%" },
       ]}
     >
       <ListHeaderFavorites />
-      <ScrollView
-        style={[styles.scrollStyle]}
-        contentContainerStyle={styles.flatListContentStyle}
-      >
-        <AnimalCard
-          animal={fixedAnimal}
-          onViewMore={onViewMorePress}
-        ></AnimalCard>
-        <AnimalCard
-          animal={fixedAnimal}
-          onViewMore={onViewMorePress}
-        ></AnimalCard>
-        <AnimalCard
-          animal={fixedAnimal}
-          onViewMore={onViewMorePress}
-        ></AnimalCard>
-        <AnimalCard
-          animal={fixedAnimal}
-          onViewMore={onViewMorePress}
-        ></AnimalCard>
-      </ScrollView>
-      <AnimalDetails
-        isViewingDetails={isViewingDetails}
-        detailingAnimal={detailingAnimal}
-        onHideDetails={OnHideDetails}
-      />
+      {favorites.length === 0 ? (
+        <Text style={styles.noFavoritesText}>
+          No hay animales favoritos aún 🐶
+        </Text>
+      ) : (
+        <ScrollView
+          style={styles.scrollStyle}
+          contentContainerStyle={styles.flatListContentStyle}
+        >
+          {favorites.map((animal) => (
+            <AnimalCard
+              key={animal.id || animal.nombre} 
+              animal={animal}
+              onViewMore={onViewMorePress}
+            />
+          ))}
+        </ScrollView>
+      )}
+
+      {detailingAnimal && (
+        <AnimalDetails
+          isViewingDetails={isViewingDetails}
+          detailingAnimal={detailingAnimal}
+          onHideDetails={onHideDetails}
+        />
+      )}
     </View>
   );
 }
-const fontSizes = 20;
 
 const styles = StyleSheet.create({
   mainContainer: {
-    display: "flex",
-    flexDirection: "column",
-    backgroundColor: "#fff",
-    width: "100%",
-    paddingHorizontal: Platform.OS === "android" ? "5%" : "25%",
-    paddingTop: Platform.OS === "android" ? "10%" : "3%",
-    paddingBottom: "1%",
-    gap: "5%",
+    flex: 1,
+    backgroundColor: "#F5F0E1",
   },
-  scrollStyle: {},
+  scrollStyle: {
+    paddingHorizontal: 10,
+  },
   flatListContentStyle: {
-    paddingHorizontal: 22,
-    display: "flex",
-    flexDirection: "column",
-    // width: "100%",
-    marginBottom: "5%",
-    gap: "2%",
+    gap: 20,
+    paddingBottom: 30,
+    paddingTop: 10,
+    alignItems: "center",
   },
-  textContentTitle: {
-    color: "#33658A",
-    fontSize: fontSizes * 1.3,
-  },
-  textContentParagraph: {
-    color: "#000",
-    fontSize: fontSizes,
-    textAlign: "justify",
+  noFavoritesText: {
+    textAlign: "center",
+    fontSize: 18,
+    marginTop: 20,
+    color: "#888",
   },
 });

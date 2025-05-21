@@ -1,9 +1,9 @@
 import Animal from "./IAnimal";
 
 interface IAnimalDetails {
-  isViewingDetails: boolean;
-  detailingAnimal: Animal;
-  changeEditHandler?: Function;
-  onHideDetails: () => void;
+  isViewingDetails: boolean
+  detailingAnimal: Animal
+  onHideDetails: () => void
 }
-export default IAnimalDetails;
+
+export default IAnimalDetails

@@ -6,7 +6,6 @@ import {
   Platform,
   ActivityIndicator,
   useWindowDimensions,
-  Modal,
 } from "react-native";
 
 import AnimalCard from "./AnimalCard";
@@ -20,7 +19,7 @@ export default function Home() {
   const [selectedEdad, setSelectedEdad] = useState("");
   const [selectedTamano, setSelectedTamano] = useState("");
 
-  const [isViewingDetails, setIsViewingDetails] = useState(false);
+  const [isViewingDetails, setIsViewingDetails] = useState(false)
   const [detailingAnimal, setDetailingAnimal] = useState<Animal>({
     nombre: "",
     edad: 0,
@@ -32,17 +31,8 @@ export default function Home() {
     sexo: "",
   });
 
-  const [filtros, setFiltros] = useState({});
-  const { width, height } = useWindowDimensions();
-
-  const onViewMorePress = (detalingAnimal: Animal) => {
-    setDetailingAnimal(detalingAnimal);
-    setIsViewingDetails(true);
-  };
-
-  const OnHideDetails = () => {
-    setIsViewingDetails(false);
-  };
+  const [filtros, setFiltros] = useState({})
+  const { height } = useWindowDimensions()
 
   useEffect(() => {
     setFiltros({
@@ -52,10 +42,19 @@ export default function Home() {
     });
   }, [selectedTipo, selectedEdad, selectedTamano]);
 
-  const { animales, loading } = useFiltroAnimales(filtros);
+  const { animales, loading } = useFiltroAnimales(filtros)
+
+  const onViewMorePress = (animal: Animal) => {
+    setDetailingAnimal(animal)
+    setIsViewingDetails(true)
+  };
+
+  const onHideDetails = () => {
+    setIsViewingDetails(false)
+  };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       {loading ? (
         <ActivityIndicator size="large" style={{ marginTop: 20 }} />
       ) : (
@@ -63,7 +62,7 @@ export default function Home() {
           <FlatList
             style={[
               styles.mainContainer,
-              { height: Platform.OS == "web" ? height * 0.92 : "100%" },
+              { height: Platform.OS === "web" ? height * 0.92 : "100%" },
             ]}
             contentContainerStyle={styles.flatListContentStyle}
             ListHeaderComponent={
@@ -83,12 +82,12 @@ export default function Home() {
               <AnimalCard animal={item} onViewMore={onViewMorePress} />
             )}
           />
+
+          {/* Modal con detalles del animal */}
           <AnimalDetails
             isViewingDetails={isViewingDetails}
             detailingAnimal={detailingAnimal}
-            // changeEditHandler={changeEditHandler}
-            // onViewMore={onViewMorePress}
-            onHideDetails={OnHideDetails}
+            onHideDetails={onHideDetails}
           />
         </>
       )}
@@ -97,17 +96,19 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
   mainContainer: {
-    height: "100%",
     width: "100%",
     backgroundColor: "#fff",
   },
   flatListContentStyle: {
-    display: "flex",
     flexDirection: "column",
     gap: 15,
     paddingHorizontal: Platform.OS === "android" ? "5%" : "25%",
     marginTop: Platform.OS === "android" ? "10%" : "3%",
-    paddingBottom: "1%",
+    paddingBottom: "5%",
   },
 });
