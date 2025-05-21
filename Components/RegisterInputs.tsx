@@ -98,7 +98,8 @@ export default function RegisterInputs() {
             ref={firstInputRef}
             returnKeyType="next"
             onSubmitEditing={() => secondInputRef?.current?.focus()}
-            placeholder="nombre completo"
+            placeholder="Nombre completo"
+            placeholderTextColor="gray"
             onChangeText={onNameChange}
             value={nombre}
             style={styles.emailInput}
@@ -111,6 +112,7 @@ export default function RegisterInputs() {
             returnKeyType="next"
             onSubmitEditing={() => thirdInputRef?.current?.focus()}
             placeholder="10 dígitos"
+            placeholderTextColor="gray"
             maxLength={10}
             keyboardType="number-pad"
             onChangeText={onCellPhoneNumberChange}
@@ -129,7 +131,8 @@ export default function RegisterInputs() {
             ref={thirdInputRef}
             returnKeyType="next"
             onSubmitEditing={() => fourthInputRef?.current?.focus()}
-            placeholder="ejemplo@gmail.com"
+            placeholder="Ejemplo@gmail.com"
+            placeholderTextColor="gray"
             keyboardType="email-address"
             onChangeText={onEmailchange}
             value={email}
@@ -147,7 +150,8 @@ export default function RegisterInputs() {
             ref={fourthInputRef}
             returnKeyType="next"
             onSubmitEditing={() => fifthInputRef?.current?.focus()}
-            placeholder="calle, num, colonia, ciudad"
+            placeholder="Calle, Num, Colonia, Ciudad"
+            placeholderTextColor="gray"
             onChangeText={onDireccionChange}
             value={direccion}
             style={styles.emailInput}
@@ -164,7 +168,8 @@ export default function RegisterInputs() {
             ref={fifthInputRef}
             returnKeyType="done"
             secureTextEntry={hidePassword}
-            placeholder="contraseña"
+            placeholder="Contraseña"
+            placeholderTextColor="gray"
             value={password}
             onChangeText={onPasswordChange}
             style={styles.emailInput}
@@ -182,7 +187,7 @@ export default function RegisterInputs() {
         </View>
         <Text style={styles.invalidField}>
           {validPassRegex.test(password) == false
-            ? "Contraseña incorrecta; usa al menos una letra mayuscula y mas de 4 letras"
+            ? "Contraseña incorrecta; usa al menos una letra mayuscula y más de 4 letras"
             : ""}
         </Text>
       </View>
@@ -225,7 +230,7 @@ const fontSizes = 20;
 
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: "10%",
+    marginTop: "3%",
     flexDirection: "column",
     width: "65%",
     gap: 15,
@@ -239,27 +244,31 @@ const styles = StyleSheet.create({
   },
   texts: {
     fontSize: fontSizes,
+    padding: "0.3%",
   },
   mainTitleText: {
-    fontSize: fontSizes * 1.5,
+    fontSize: fontSizes * 1.3,
     alignSelf: "center",
   },
   inputsContainer: {
     display: "flex",
     flexDirection: "column",
-    gap: 10,
+    gap: 15,
+    marginTop: 15
   },
 
   recoverTextsContainer: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-end",
+    marginTop: 10,
   },
   recoverTexts: {
-    fontSize: fontSizes * 0.7,
+    fontSize: fontSizes * 0.85,
   },
   loginButtonContainer: {
     alignItems: "center",
+    marginTop: 10
   },
   loginButton: {
     backgroundColor: "#C9B892",
@@ -287,7 +296,9 @@ const styles = StyleSheet.create({
     padding: 5,
     width: "100%",
     backgroundColor: "white",
-    fontSize: fontSizes,
+    fontSize: fontSizes * 0.8,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
   },
   passwordGeneralContainer: {
     display: "flex",
@@ -295,10 +306,11 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   passwordEye: {
-    width: "10%",
+    width: 30,
     position: "absolute",
-    right: 0,
-    bottom: 7,
+    right: 10,
+    bottom: 10,
+    alignItems: "center"
   },
   modalOverlay: {
     flex: 1,

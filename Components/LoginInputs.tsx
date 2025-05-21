@@ -57,7 +57,8 @@ export default function LoginInputs() {
             ref={firstInputRef}
             returnKeyType="next"
             onSubmitEditing={() => secondInputRef?.current?.focus()}
-            placeholder="ejemplo@gmail.com"
+            placeholder="Ejemplo@gmail.com"
+            placeholderTextColor="gray"
             textContentType="emailAddress"
             keyboardType="email-address"
             style={styles.emailInput}
@@ -73,7 +74,8 @@ export default function LoginInputs() {
             ref={secondInputRef}
             returnKeyType="done"
             secureTextEntry={hidePassword}
-            placeholder="contraseña"
+            placeholder="Contraseña"
+            placeholderTextColor="gray"
             textContentType="password"
             keyboardType="default"
             value={password}
@@ -134,7 +136,7 @@ const fontSizes = 20;
 
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: "10%",
+    marginTop: "3%",
     flexDirection: "column",
     width: "65%",
     gap: 15,
@@ -178,21 +180,23 @@ const styles = StyleSheet.create({
     borderColor: "#C9B892",
     borderWidth: 2,
     borderRadius: 10,
-    padding: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
     width: "100%",
     backgroundColor: "white",
-    fontSize: fontSizes,
+    fontSize: fontSizes * 0.8,
   },
   passwordGeneralContainer: {
     display: "flex",
     flexDirection: "column",
     width: "100%",
-  },
+  },  
   passwordEye: {
-    width: "10%",
+    width: 30,
     position: "absolute",
-    right: 0,
-    bottom: 7,
+    right: 10,
+    alignItems: "center",
+    bottom: 10,
   },
   loginButtonContainer: {
     width: "100%",
@@ -207,11 +211,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   loginText: {
-    color: "#000",
-    fontSize: fontSizes,
+    color: "black",
+    fontSize: fontSizes * 0.9,
     fontWeight: "500",
   },
   invalidField: {
     color: "red",
+    fontSize: fontSizes * 0.8,
   },
 });

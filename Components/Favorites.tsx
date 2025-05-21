@@ -79,14 +79,12 @@ const fontSizes = 20;
 
 const styles = StyleSheet.create({
   mainContainer: {
-    display: "flex",
-    flexDirection: "column",
+    flex: 1,
     backgroundColor: "#fff",
     width: "100%",
-    paddingHorizontal: Platform.OS === "android" ? "5%" : "25%",
-    paddingTop: Platform.OS === "android" ? "10%" : "3%",
+    paddingHorizontal: Platform.OS === "android" ? "5%" : "20%",
+    paddingTop: Platform.OS === "android" ? "10%" : "4%",
     paddingBottom: "1%",
-    gap: "5%",
   },
   scrollStyle: {},
   flatListContentStyle: {
@@ -100,10 +98,13 @@ const styles = StyleSheet.create({
   textContentTitle: {
     color: "#33658A",
     fontSize: fontSizes * 1.3,
+    fontWeight: "bold",
+    marginBottom: 5,
   },
   textContentParagraph: {
     color: "#000",
     fontSize: fontSizes,
     textAlign: "justify",
+    lineHeight: fontSizes * 1.4,
   },
 });
