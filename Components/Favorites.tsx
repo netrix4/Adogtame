@@ -1,4 +1,5 @@
 import {
+  FlatList,
   Platform,
   SafeAreaView,
   ScrollView,
@@ -7,14 +8,17 @@ import {
   useWindowDimensions,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ListHeaderFavorites from "./ListHeaderFavorites";
 import AnimalCard from "./AnimalCard";
 import Animal from "../Interfaces/IAnimal";
 import AnimalDetails from "./AnimalDetails";
+import { useSolicitudes } from "../hooks/useSolicitudes";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Resources() {
   const fixedAnimal: Animal = {
+    id: "",
     nombre: "Firulais",
     edad: 99,
     raza: "De todas",
@@ -28,6 +32,16 @@ export default function Resources() {
   const { width, height } = useWindowDimensions();
   const [isViewingDetails, setIsViewingDetails] = useState(false);
   const [detailingAnimal, setDetailingAnimal] = useState<Animal>(fixedAnimal);
+  const { solicitudes, getSolicitudesByLoggedUserId, userId } =
+    useSolicitudes();
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      if (userId) {
+        getSolicitudesByLoggedUserId(userId || "");
+      }
+    });
+  }, [userId]);
 
   const onViewMorePress = (detailingAnimal: Animal) => {
     setDetailingAnimal(detailingAnimal);
@@ -46,27 +60,16 @@ export default function Resources() {
       ]}
     >
       <ListHeaderFavorites />
-      <ScrollView
+      <FlatList
         style={[styles.scrollStyle]}
         contentContainerStyle={styles.flatListContentStyle}
-      >
-        <AnimalCard
-          animal={fixedAnimal}
-          onViewMore={onViewMorePress}
-        ></AnimalCard>
-        <AnimalCard
-          animal={fixedAnimal}
-          onViewMore={onViewMorePress}
-        ></AnimalCard>
-        <AnimalCard
-          animal={fixedAnimal}
-          onViewMore={onViewMorePress}
-        ></AnimalCard>
-        <AnimalCard
-          animal={fixedAnimal}
-          onViewMore={onViewMorePress}
-        ></AnimalCard>
-      </ScrollView>
+        data={solicitudes}
+        renderItem={({ item }) => {
+          return (
+            <AnimalCard animal={item.animal} onViewMore={onViewMorePress} />
+          );
+        }}
+      />
       <AnimalDetails
         isViewingDetails={isViewingDetails}
         detailingAnimal={detailingAnimal}

@@ -19,7 +19,6 @@ const useProfileData = () => {
         setError(error);
       })
       .finally(() => {
-        console.log("Finished promise");
         setLoading(false);
       });
   };

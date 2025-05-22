@@ -9,7 +9,7 @@ export default function ListHeaderFavorites() {
         <Image source={logo} style={styles.adogtameImg} />
         <Text style={styles.adogtameTitle}>Adogtame 🐾</Text>
       </View>
-      <Text style={styles.resourcesTitle}>Favoritos</Text>
+      <Text style={styles.resourcesTitle}>Solicitudes</Text>
     </View>
   );
 }
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    gap: 10
+    gap: 10,
   },
   adogtameImg: {
     width: 70,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   adogtameTitle: {
     fontSize: fontSizes * 1.5,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   resourcesTitle: {
     fontSize: fontSizes * 1.4,

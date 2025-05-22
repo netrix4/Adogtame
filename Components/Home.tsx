@@ -22,6 +22,7 @@ export default function Home() {
 
   const [isViewingDetails, setIsViewingDetails] = useState(false);
   const [detailingAnimal, setDetailingAnimal] = useState<Animal>({
+    id: "",
     nombre: "",
     edad: 0,
     raza: "",

@@ -11,6 +11,9 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import IAnimalDetails from "../Interfaces/IAnimalDetails";
+import { useSolicitudes } from "../hooks/useSolicitudes";
+import { setSolicitudByLoggedUserId } from "../api/solicitudes";
+import { useProfileData } from "../hooks/useProfileData";
 
 const AnimalDetails = ({
   isViewingDetails,
@@ -18,6 +21,7 @@ const AnimalDetails = ({
   changeEditHandler,
   onHideDetails,
 }: IAnimalDetails) => {
+  const { userMetaData, error } = useProfileData();
   const { width, height } = useWindowDimensions();
   return (
     <Modal visible={isViewingDetails} transparent animationType="slide">
@@ -73,8 +77,11 @@ const AnimalDetails = ({
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              console.log("Agregar a favoritos");
-              
+              // onHideDetails();
+              setSolicitudByLoggedUserId(
+                detailingAnimal,
+                userMetaData?.sub || ""
+              );
             }}
           >
             <Ionicons
@@ -135,7 +142,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#444",
     marginVertical: 2,
-
   },
   animalImage: {
     borderRadius: 15,
