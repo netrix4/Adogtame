@@ -7,24 +7,25 @@ In this document we will provide a complete guide for the user to install, confi
 ## Index
 
 1. [Introduction to Adogtame](#introduction-to-adogtame)
-2. [Purposes and benefits of Adogtame](#purposes-and-benefits-of-adogtame)
+2. [Purposes and Benefits of Adogtame](#purposes-and-benefits-of-adogtame)
+3. [Minium Hardware and Software Requirements](#minimum-hardware-and-software-requirements)
 
-## Introduction to Adogtame
+## Introduction to Adogtame :paperclip:
 
 **Adogtame** is a mobile apllication focused on the responsible adoption of pets, designed to save lives by connecting potencial adopters whit dogs and cats at risk, housed in rabies centers and municipal kennels
 
-## Purposes and benefits of Adogtame
+## Purposes and benefits of Adogtame :dart:
 
 The main objective of **Adogtame** is to reduce the rate of slaughter in animal control centers, providingvisibility to these pets and facilitating their adoption in an accessible, informed and empathetic way
 
-## Minimum Hardware and Software Requirements
+## Minimum Hardware and Software Requirements :computer:
 The application is designed to be accessible from any device with an internet connection, whether it's a PC, laptop, tablet, or smartphone (iOS or Android). It does not require advanced hardware specifications.
 
-To run Adogtame, the following software is required:
+To run **Adogtame**, the following software is required:
 
-Backend: Adogtame relies on Supabase as its backend to manage authentication, data storage and queries related to pets and users
+_Backend:_ Adogtame relies on Supabase as its backend to manage authentication, data storage and queries related to pets and users
 
-Frontend: The frontend of Adogtame is developed using React Native with Expo, which allows the app to run smoothly on both Android and iOS devices, and optionally on web
+_Frontend:_ The frontend of **Adogtame** is developed using React Native with Expo, which allows the app to run smoothly on both Android and iOS devices, and optionally on web
 ## Run project
 
 > [!WARNING]
