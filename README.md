@@ -17,6 +17,14 @@ In this document we will provide a complete guide for the user to install, confi
 
 The main objective of **Adogtame** is to reduce the rate of slaughter in animal control centers, providingvisibility to these pets and facilitating their adoption in an accessible, informed and empathetic way
 
+## Minimum Hardware and Software Requirements
+The application is designed to be accessible from any device with an internet connection, whether it's a PC, laptop, tablet, or smartphone (iOS or Android). It does not require advanced hardware specifications.
+
+To run Adogtame, the following software is required:
+
+Backend: Adogtame relies on Supabase as its backend to manage authentication, data storage and queries related to pets and users
+
+Frontend: The frontend of Adogtame is developed using React Native with Expo, which allows the app to run smoothly on both Android and iOS devices, and optionally on web
 ## Run project
 
 > [!WARNING]
