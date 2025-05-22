@@ -75,21 +75,25 @@ const AnimalDetails = ({
               color={"#BDA45E"}
             />
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              // onHideDetails();
-              setSolicitudByLoggedUserId(
-                detailingAnimal,
-                userMetaData?.sub || ""
-              );
-            }}
-          >
-            <Ionicons
-              name="heart-outline"
-              size={fontSizes * 2}
-              color={"#BDA45E"}
-            />
-          </TouchableOpacity>
+          <View style={styles.buttonNavigationContainer}>
+            <TouchableOpacity
+              onPress={() => {
+                // onHideDetails();
+                setSolicitudByLoggedUserId(
+                  detailingAnimal,
+                  userMetaData?.sub || ""
+                );
+              }}
+              style={styles.loginButton}
+            >
+              <Text style={styles.loginText}>Solcitar adopcion</Text>
+              <Ionicons
+                name="heart-outline"
+                size={fontSizes * 2}
+                color={"#F5F0E1"}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </Modal>
@@ -150,6 +154,28 @@ const styles = StyleSheet.create({
     maxWidth: 320,
     marginVertical: 10,
     // maxWidth: 200,
+  },
+  loginButton: {
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "#C9B892",
+    // width: "50%",
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    borderRadius: 10,
+    marginVertical: 15,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  loginText: {
+    color: "black",
+    fontSize: fontSizes * 0.9,
+    fontWeight: "500",
+  },
+  buttonNavigationContainer: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 export default AnimalDetails;

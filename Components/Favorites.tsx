@@ -66,7 +66,11 @@ export default function Resources() {
         data={solicitudes}
         renderItem={({ item }) => {
           return (
-            <AnimalCard animal={item.animal} onViewMore={onViewMorePress} />
+            <AnimalCard
+              hideShowMore={true}
+              animal={item.animal}
+              onViewMore={onViewMorePress}
+            />
           );
         }}
       />

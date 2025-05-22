@@ -2,7 +2,11 @@ import { StyleSheet, Text, Image, View, TouchableOpacity } from "react-native";
 import React from "react";
 import IAnimalCardProps from "../Interfaces/IAnimalCardProps";
 
-export default function AnimalCard({ animal, onViewMore }: IAnimalCardProps) {
+export default function AnimalCard({
+  animal,
+  onViewMore,
+  hideShowMore,
+}: IAnimalCardProps) {
   const onViewMoreDetails = () => {
     onViewMore(animal);
   };
@@ -21,9 +25,11 @@ export default function AnimalCard({ animal, onViewMore }: IAnimalCardProps) {
         <Text style={styles.quickInfoText}>Sexo: {animal.sexo}</Text>
         <Text style={styles.quickInfoText}>Edad: {animal.edad}</Text>
         <Text style={styles.quickInfoText}>Tamaño: {animal.tamaño}</Text>
-        <TouchableOpacity onPress={onViewMoreDetails}>
-          <Text style={styles.watchMoreText}>Ver más</Text>
-        </TouchableOpacity>
+        {hideShowMore ? null : (
+          <TouchableOpacity onPress={onViewMoreDetails}>
+            <Text style={styles.watchMoreText}>Ver más</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
   animalQuickInfo: {
     flex: 1,
     flexDirection: "column",
-    gap: 2
+    gap: 2,
   },
   animalName: {
     fontSize: fontSizes + 2,
@@ -68,10 +74,10 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   quickInfoText: {
-   // fontWeight: "bold",
+    // fontWeight: "bold",
     fontSize: fontSizes * 0.9,
     marginBottom: 2,
-    color: "#444"
+    color: "#444",
   },
   watchMoreContainer: {
     marginTop: 8,
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
   },
   watchMoreText: {
     color: "#33658A",
-    fontSize: fontSizes * 0.85, 
+    fontSize: fontSizes * 0.85,
     fontWeight: "500",
   },
 });

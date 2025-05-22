@@ -81,7 +81,11 @@ export default function Home() {
             data={animales}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <AnimalCard animal={item} onViewMore={onViewMorePress} />
+              <AnimalCard
+                hideShowMore={false}
+                animal={item}
+                onViewMore={onViewMorePress}
+              />
             )}
           />
           <AnimalDetails
