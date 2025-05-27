@@ -138,10 +138,75 @@ Create a file at lib/supabase.ts and add your Supabase URL and anon key
 
 ## How to Run Adogtame :arrow_forward:
 Run _Adogtame_ with the following command
+
 ``npx expo start``
 
 ## Access and Credential Recovery Guide :key:
 Through these procedures, you will be able to securely manage your access to the application, ensuring that you always have the ability to log in or reset your credential
+
+## Login :iphone:
+Allows users to authenticate in the system to access their data and personalized features.
+
+**Steps:**
+- Open Adogtame (Mobile)
+- Go to the Login section
+- Enter your email address in the corresponding field
+- Enter your password
+- Click the "Login" button
+- If the credentials are correct, you will access your account. In case of an error, verify your information or use the password recovery option if you forgot your password
+
+## Sign up :pencil2:
+New users must register to create an account.
+
+**Steps:**
+- On the home page, select the Sign Up option
+- Fill out the form with the following information:
+    - Full name
+    - Valid email address
+    - Password
+    - Phone number
+    - Address
+- Click on Create Account
+- You will receive a verification email. Click the link to confirm your account (verify this step)
+- Once confirmed, you will be able to log in
+
+## Password Recovery :key:
+Users can recover their password in case they forget it
+
+**Steps:**
+- On the home page, select the option "Forgot your password? Recover it"
+- Enter the email address you used to register
+- You will receive an email with a link to create a new password
+
+## Technical Support and Contact :envelope:
+If you need technical assistance or have questions about using the application, you can contact our support team through the following channels:
+
+You can send us an email with a detailed description of your issue, and our team will get back to you as soon as possible.
+
+Email: Adogtame.soporte@gmail.com
+
+Support Hours:
+Monday to Friday: 9:00 AM – 6:00 PM
+
+Social Media:
+You can follow and contact us through our social media platforms:
+
+Facebook: @Adogtame
+X: @Adogtame
+Instagram: @Adogtame
+
+## Developed by :computer:
+- Arias Mario
+- Bañuelos Fátima
+- Caballero Rúben
+- Olan Fernanda
+- Romero David 
+
+
+
+
+
+
 
 
 
