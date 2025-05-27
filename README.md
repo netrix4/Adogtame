@@ -86,7 +86,7 @@ Create a file at lib/supabase.ts and add your Supabase URL and anon key
 #### 8. Run the project after the installation of the dependencies
 `npx expo start -c`
 
-## Install Node.js on Windows
+## Install Node.js on Windows :floppy_disk:
 
 #### 1. Go to the [official Node.js website](https://nodejs.org/en "Página oficial de Node.js")
 - Download the version appropriate for your system
@@ -97,6 +97,20 @@ Create a file at lib/supabase.ts and add your Supabase URL and anon key
 #### 2. Verify the installation in CMD or PowerShell:
 ``node -v``
 ``npm -v``
+
+#### 3. Install Expo CLI
+Open PowerShell and run:
+``npm install -g expo-cli``
+
+#### 4. Clone the project and enter the directory
+``git clone https://github.com/netrix4/Adogtame.git``
+``cd Adogtame``
+
+#### 5. Install project dependencies
+``npm install``
+
+#### 6. Configure Supabase
+Create a file at lib/supabase.ts and add your Supabase URL and anon key
 
 
 
