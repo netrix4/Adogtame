@@ -9,6 +9,9 @@ In this document we will provide a complete guide for the user to install, confi
 1. [Introduction to Adogtame](#introduction-to-adogtame)
 2. [Purposes and Benefits of Adogtame](#purposes-and-benefits-of-adogtame)
 3. [Minium Hardware and Software Requirements](#minimum-hardware-and-software-requirements)
+4. [Installation and Configuration Instructions](#installation-and-configuration-instructions)
+
+
 
 ## Introduction to Adogtame :paperclip:
 
@@ -26,7 +29,37 @@ To run **Adogtame**, the following software is required:
 _Backend:_ Adogtame relies on Supabase as its backend to manage authentication, data storage and queries related to pets and users
 
 _Frontend:_ The frontend of **Adogtame** is developed using React Native with Expo, which allows the app to run smoothly on both Android and iOS devices, and optionally on web
-## Run project
+
+## Installation and Configuration Instructions :wrench:
+To ensure the Adogtame application works correctly, make sure you have Node.js and Expo CLI installed, and that you have access to a properly configured Supabase account. Below are the steps to install Node.js, Expo CLI, and configure Supabase on 3 different Linux distributions and on Windows:
+
+## Installing Node.js on Ubuntu/Debian :penguin:
+Update the system packages using the following command:
+``sudo apt update``
+#### 1. Install Node.js from its official repository
+``sudo apt install nodejs``
+> [!NOTE]
+> In this project, we used Node.js version 22.14.0. To ensure you install this version, you can specify it during installation or update your system afterward.
+
+#### 2. Install Expo CLI
+``npm install -g expo-cli``
+
+#### 3. Verify the installation of both
+``node -v``
+``npm -v``
+
+#### 4. Clone the project and enter the directory
+``git clone https://github.com/netrix4/Adogtame.git``
+``cd Adogtame``
+
+#### 5. Install project dependencies
+``npm install``
+
+#### 6. Configure Supabase
+Create a file at lib/supabase.ts and add your Supabase URL and anon key
+
+
+#### 7. Run project
 
 > [!WARNING]
 > It is necessary to have the sdk 52 version for it to work with Supabase
