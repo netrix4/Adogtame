@@ -192,7 +192,9 @@ Social Media:
 You can follow and contact us through our social media platforms:
 
 Facebook: @Adogtame
+
 X: @Adogtame
+
 Instagram: @Adogtame
 
 ## Developed by :computer:
