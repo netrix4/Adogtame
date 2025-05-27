@@ -83,14 +83,7 @@ Create a file at lib/supabase.ts and add your Supabase URL and anon key
 
 `npm expo install --fix`
 
-### Install Supabase in the project
-
-`npm install @supabase/supabase-js`
-
-`npm install lodash`
-
-`npm install -D @types/lodash`
-
-### Run the project after the installation of the dependencies
-
+#### 8. Run the project after the installation of the dependencies
 `npx expo start -c`
+
+
