@@ -10,6 +10,8 @@ In this document we will provide a complete guide for the user to install, confi
 2. [Purposes and Benefits of Adogtame](#purposes-and-benefits-of-adogtame)
 3. [Minium Hardware and Software Requirements](#minimum-hardware-and-software-requirements)
 4. [Installation and Configuration Instructions](#installation-and-configuration-instructions)
+5. [How to Run Adogtame](#how-to-run-adogtame)
+6. [Access and Credential Recovery Guide](#access-and-credential-recovery-guide)
 
 
 
@@ -137,6 +139,11 @@ Create a file at lib/supabase.ts and add your Supabase URL and anon key
 ## How to Run Adogtame :arrow_forward:
 Run _Adogtame_ with the following command
 ``npx expo start``
+
+## Access and Credential Recovery Guide :key:
+Through these procedures, you will be able to securely manage your access to the application, ensuring that you always have the ability to log in or reset your credential
+
+
 
 
 
