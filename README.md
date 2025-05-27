@@ -6,12 +6,12 @@ In this document we will provide a complete guide for the user to install, confi
 
 ## Index
 
-1. [Introduction to Adogtame](#introduction-to-adogtame)
-2. [Purposes and Benefits of Adogtame](#purposes-and-benefits-of-adogtame)
-3. [Minium Hardware and Software Requirements](#minimum-hardware-and-software-requirements)
-4. [Installation and Configuration Instructions](#installation-and-configuration-instructions)
-5. [How to Run Adogtame](#how-to-run-adogtame)
-6. [Access and Credential Recovery Guide](#access-and-credential-recovery-guide)
+1. [Introduction to Adogtame](#introduction-to-adogtame-paperclip)
+2. [Purposes and Benefits of Adogtame](#purposes-and-benefits-of-adogtame-dart)
+3. [Minium Hardware and Software Requirements](#minimum-hardware-and-software-requirements-computer)
+4. [Installation and Configuration Instructions](#installation-and-configuration-instructions-wrench)
+5. [How to Run Adogtame](#how-to-run-adogtame-arrow_forward)
+6. [Access and Credential Recovery Guide](#access-and-credential-recovery-guide-key)
 
 
 
