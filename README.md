@@ -86,4 +86,17 @@ Create a file at lib/supabase.ts and add your Supabase URL and anon key
 #### 8. Run the project after the installation of the dependencies
 `npx expo start -c`
 
+## Install Node.js on Windows
+
+#### 1. Go to the [official Node.js website](https://nodejs.org/en "Página oficial de Node.js")
+- Download the version appropriate for your system
+> [!NOTE]
+> In this project, we used Node.js version 22.14.0. To ensure you install this version, you can specify it during installation or update your system afterward.
+- During the installation, check the option that adds Node.js to the PATH
+
+#### 2. Verify the installation in CMD or PowerShell:
+``node -v``
+``npm -v``
+
+
 
