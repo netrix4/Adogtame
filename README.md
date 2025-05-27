@@ -134,7 +134,7 @@ Create a file at lib/supabase.ts and add your Supabase URL and anon key
 
 `npm expo install --fix`
 
-## How to Run the Real-Time Chat :arrow_forward:
+## How to Run Adogtame :arrow_forward:
 Run _Adogtame_ with the following command
 ``npx expo start``
 
