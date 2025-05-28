@@ -7,9 +7,10 @@ import {
   TouchableOpacity,
   Platform,
   useWindowDimensions,
+  ActivityIndicator,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import React from "react";
+import React, { useState } from "react";
 import IAnimalDetails from "../Interfaces/IAnimalDetails";
 import { useSolicitudes } from "../hooks/useSolicitudes";
 import { setSolicitudByLoggedUserId } from "../api/solicitudes";
@@ -23,6 +24,12 @@ const AnimalDetails = ({
 }: IAnimalDetails) => {
   const { userMetaData, error } = useProfileData();
   const { width, height } = useWindowDimensions();
+  const [loadingSolicitud, setLoadingSolicitud] = useState(false);
+
+  const handleHideModal = () => {
+    onHideDetails();
+  };
+
   return (
     <Modal visible={isViewingDetails} transparent animationType="slide">
       <View
@@ -66,7 +73,7 @@ const AnimalDetails = ({
           </Text>
           <Text style={styles.animalDetailsText}>{detailingAnimal.tamaño}</Text>
           <TouchableOpacity
-            onPress={onHideDetails}
+            onPress={handleHideModal}
             style={styles.closeModalButton}
           >
             <Ionicons
@@ -78,20 +85,28 @@ const AnimalDetails = ({
           <View style={styles.buttonNavigationContainer}>
             <TouchableOpacity
               onPress={() => {
-                // onHideDetails();
+                setLoadingSolicitud(true);
                 setSolicitudByLoggedUserId(
                   detailingAnimal,
-                  userMetaData?.sub || ""
+                  userMetaData?.sub as string
                 );
+                setLoadingSolicitud(false);
+                handleHideModal();
               }}
               style={styles.loginButton}
             >
-              <Text style={styles.loginText}>Solcitar adopcion</Text>
-              <Ionicons
-                name="heart-outline"
-                size={fontSizes * 2}
-                color={"#F5F0E1"}
-              />
+              {loadingSolicitud ? (
+                <ActivityIndicator size="small" />
+              ) : (
+                <>
+                  <Text style={styles.loginText}>Solcitar adopcion</Text>
+                  <Ionicons
+                    name="heart-outline"
+                    size={fontSizes * 2}
+                    color={"#F5F0E1"}
+                  />
+                </>
+              )}
             </TouchableOpacity>
           </View>
         </View>

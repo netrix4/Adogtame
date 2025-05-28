@@ -18,6 +18,11 @@ export const useFiltroAnimales = (filtros: {
     const fetchAnimales = async () => {
       setLoading(true);
 
+      // let dara = await supabase
+      //   .from("solicitudes")
+      //   .delete()
+      //   .eq("usuario_id", "a5e2b971-c86e-416e-b542-dad6be8da962");
+
       let query = supabase.from("animales").select("*");
 
       if (filtros.tipo) query = query.eq("tipo", filtros.tipo);

@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     // width: "100%",
     marginBottom: "5%",
-    gap: "2%",
+    gap: 15,
   },
   textContentTitle: {
     color: "#33658A",
