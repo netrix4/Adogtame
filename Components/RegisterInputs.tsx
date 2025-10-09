@@ -8,11 +8,12 @@ import {
   TextInput,
   Modal,
   Alert,
+  ScrollView,
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { supabase } from "../lib/supabase";
-import logo from "../assets/Logo.svg";
+import logo from "../assets/Logo.png";
 
 export default function RegisterInputs() {
   const navigation = useNavigation();
@@ -88,142 +89,145 @@ export default function RegisterInputs() {
   };
 
   return (
-    <View style={styles.mainContainer}>
-      <Image style={styles.mainImage} source={logo} />
-      <Text style={styles.mainTitleText}>Adogtame 🐾</Text>
-      <View style={styles.inputsContainer}>
-        <View style={styles.emailGeneralContainer}>
-          <Text style={styles.texts}>Nombre</Text>
-          <TextInput
-            ref={firstInputRef}
-            returnKeyType="next"
-            onSubmitEditing={() => secondInputRef?.current?.focus()}
-            placeholder="Nombre completo"
-            placeholderTextColor="gray"
-            onChangeText={onNameChange}
-            value={nombre}
-            style={styles.emailInput}
-          />
-        </View>
-        <View style={styles.emailGeneralContainer}>
-          <Text style={styles.texts}>Número de celular</Text>
-          <TextInput
-            ref={secondInputRef}
-            returnKeyType="next"
-            onSubmitEditing={() => thirdInputRef?.current?.focus()}
-            placeholder="10 dígitos"
-            placeholderTextColor="gray"
-            maxLength={10}
-            keyboardType="number-pad"
-            onChangeText={onCellPhoneNumberChange}
-            value={telefono}
-            style={styles.emailInput}
-          />
-          <Text style={styles.invalidField}>
-            {validCellPhone.test(telefono) == false
-              ? "Número de télefono inválido"
-              : ""}
-          </Text>
-        </View>
-        <View style={styles.emailGeneralContainer}>
-          <Text style={styles.texts}>Correo Electrónico</Text>
-          <TextInput
-            ref={thirdInputRef}
-            returnKeyType="next"
-            onSubmitEditing={() => fourthInputRef?.current?.focus()}
-            placeholder="Ejemplo@gmail.com"
-            placeholderTextColor="gray"
-            keyboardType="email-address"
-            onChangeText={onEmailchange}
-            value={email}
-            style={styles.emailInput}
-          />
-          <Text style={styles.invalidField}>
-            {validEmailRegex.test(email) == false
-              ? "Correo electrónico inválido"
-              : ""}
-          </Text>
-        </View>
-        <View style={styles.emailGeneralContainer}>
-          <Text style={styles.texts}>Dirección</Text>
-          <TextInput
-            ref={fourthInputRef}
-            returnKeyType="next"
-            onSubmitEditing={() => fifthInputRef?.current?.focus()}
-            placeholder="Calle, Num, Colonia, Ciudad"
-            placeholderTextColor="gray"
-            onChangeText={onDireccionChange}
-            value={direccion}
-            style={styles.emailInput}
-          />
-          <Text style={styles.invalidField}>
-            {validAddress.test(direccion) === false
-              ? "Formato de direccion invalido (calle, num, colonia, ciudad)"
-              : ""}
-          </Text>
-        </View>
-        <View style={styles.passwordGeneralContainer}>
-          <Text style={styles.texts}>Contraseña</Text>
-          <TextInput
-            ref={fifthInputRef}
-            returnKeyType="done"
-            secureTextEntry={hidePassword}
-            placeholder="Contraseña"
-            placeholderTextColor="gray"
-            value={password}
-            onChangeText={onPasswordChange}
-            style={styles.emailInput}
-          />
-          <TouchableOpacity
-            onPress={() => setHidePassword(!hidePassword)}
-            style={styles.passwordEye}
-          >
-            <Ionicons
-              name={hidePassword ? "eye" : "eye-off"}
-              color={"black"}
-              size={20}
+    <ScrollView style={styles.mainContainer}>
+      {/* <View style={styles.mainContainer}> */}
+      <View>
+        <Image style={styles.mainImage} source={logo} />
+        <Text style={styles.mainTitleText}>Adogtame 🐾</Text>
+        <View style={styles.inputsContainer}>
+          <View style={styles.emailGeneralContainer}>
+            <Text style={styles.texts}>Nombre</Text>
+            <TextInput
+              ref={firstInputRef}
+              returnKeyType="next"
+              onSubmitEditing={() => secondInputRef?.current?.focus()}
+              placeholder="Nombre completo"
+              placeholderTextColor="gray"
+              onChangeText={onNameChange}
+              value={nombre}
+              style={styles.emailInput}
             />
-          </TouchableOpacity>
-        </View>
-        <Text style={styles.invalidField}>
-          {validPassRegex.test(password) == false
-            ? "Contraseña incorrecta; usa al menos una letra mayuscula y más de 4 letras"
-            : ""}
-        </Text>
-      </View>
-
-      <View style={styles.loginButtonContainer}>
-        <TouchableOpacity onPress={handleRegister} style={styles.loginButton}>
-          <Text style={styles.loginText}>Registrarse</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.recoverTextsContainer}
-          onPress={() => navigation.goBack()}
-        >
-          <Text style={{ fontWeight: "bold" }}> Volver</Text>
-        </TouchableOpacity>
-      </View>
-
-      <Modal visible={showModal} transparent animationType="fade">
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-            <Text style={styles.acceptText}>
-              Se ha enviado una confirmación al correo proporcionado. Favor de
-              revisarlo.
+          </View>
+          <View style={styles.emailGeneralContainer}>
+            <Text style={styles.texts}>Número de celular</Text>
+            <TextInput
+              ref={secondInputRef}
+              returnKeyType="next"
+              onSubmitEditing={() => thirdInputRef?.current?.focus()}
+              placeholder="10 dígitos"
+              placeholderTextColor="gray"
+              maxLength={10}
+              keyboardType="number-pad"
+              onChangeText={onCellPhoneNumberChange}
+              value={telefono}
+              style={styles.emailInput}
+            />
+            <Text style={styles.invalidField}>
+              {validCellPhone.test(telefono) == false
+                ? "Número de télefono inválido"
+                : ""}
             </Text>
+          </View>
+          <View style={styles.emailGeneralContainer}>
+            <Text style={styles.texts}>Correo Electrónico</Text>
+            <TextInput
+              ref={thirdInputRef}
+              returnKeyType="next"
+              onSubmitEditing={() => fourthInputRef?.current?.focus()}
+              placeholder="Ejemplo@gmail.com"
+              placeholderTextColor="gray"
+              keyboardType="email-address"
+              onChangeText={onEmailchange}
+              value={email}
+              style={styles.emailInput}
+            />
+            <Text style={styles.invalidField}>
+              {validEmailRegex.test(email) == false
+                ? "Correo electrónico inválido"
+                : ""}
+            </Text>
+          </View>
+          <View style={styles.emailGeneralContainer}>
+            <Text style={styles.texts}>Dirección</Text>
+            <TextInput
+              ref={fourthInputRef}
+              returnKeyType="next"
+              onSubmitEditing={() => fifthInputRef?.current?.focus()}
+              placeholder="Calle, Num, Colonia, Ciudad"
+              placeholderTextColor="gray"
+              onChangeText={onDireccionChange}
+              value={direccion}
+              style={styles.emailInput}
+            />
+            <Text style={styles.invalidField}>
+              {validAddress.test(direccion) === false
+                ? "Formato de direccion invalido (calle, num, colonia, ciudad)"
+                : ""}
+            </Text>
+          </View>
+          <View style={styles.passwordGeneralContainer}>
+            <Text style={styles.texts}>Contraseña</Text>
+            <TextInput
+              ref={fifthInputRef}
+              returnKeyType="done"
+              secureTextEntry={hidePassword}
+              placeholder="Contraseña"
+              placeholderTextColor="gray"
+              value={password}
+              onChangeText={onPasswordChange}
+              style={styles.emailInput}
+            />
             <TouchableOpacity
-              style={styles.acceptButton}
-              onPress={() => {
-                setShowModal(false);
-                navigation.goBack();
-              }}
+              onPress={() => setHidePassword(!hidePassword)}
+              style={styles.passwordEye}
             >
-              <Text style={styles.acceptButtonText}>Aceptar</Text>
+              <Ionicons
+                name={hidePassword ? "eye" : "eye-off"}
+                color={"black"}
+                size={20}
+              />
             </TouchableOpacity>
           </View>
+          <Text style={styles.invalidField}>
+            {validPassRegex.test(password) == false
+              ? "Contraseña incorrecta; usa al menos una letra mayuscula y más de 4 letras"
+              : ""}
+          </Text>
         </View>
-      </Modal>
-    </View>
+
+        <View style={styles.loginButtonContainer}>
+          <TouchableOpacity onPress={handleRegister} style={styles.loginButton}>
+            <Text style={styles.loginText}>Registrarse</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.recoverTextsContainer}
+            onPress={() => navigation.goBack()}
+          >
+            <Text style={{ fontWeight: "bold" }}> Volver</Text>
+          </TouchableOpacity>
+        </View>
+
+        <Modal visible={showModal} transparent animationType="fade">
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <Text style={styles.acceptText}>
+                Se ha enviado una confirmación al correo proporcionado. Favor de
+                revisarlo.
+              </Text>
+              <TouchableOpacity
+                style={styles.acceptButton}
+                onPress={() => {
+                  setShowModal(false);
+                  navigation.goBack();
+                }}
+              >
+                <Text style={styles.acceptButtonText}>Aceptar</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+      </View>
+    </ScrollView>
   );
 }
 const fontSizes = 20;
@@ -237,8 +241,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   mainImage: {
-    width: 200,
-    height: 200,
+    width: 180,
+    height: 180,
     borderRadius: 100,
     alignSelf: "center",
   },
@@ -254,7 +258,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     gap: 15,
-    marginTop: 15
+    marginTop: 15,
   },
 
   recoverTextsContainer: {
@@ -268,7 +272,7 @@ const styles = StyleSheet.create({
   },
   loginButtonContainer: {
     alignItems: "center",
-    marginTop: 10
+    marginTop: 10,
   },
   loginButton: {
     backgroundColor: "#C9B892",
@@ -310,7 +314,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 10,
     bottom: 10,
-    alignItems: "center"
+    alignItems: "center",
   },
   modalOverlay: {
     flex: 1,

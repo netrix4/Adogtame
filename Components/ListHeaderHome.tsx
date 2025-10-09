@@ -1,7 +1,7 @@
 import { StyleSheet, Text, Image, View, Pressable } from "react-native";
 import React from "react";
 import { Picker } from "@react-native-picker/picker";
-import logo from "../assets/Logo.svg";
+import logo from "../assets/Logo.png";
 
 type Props = {
   selectedTipo: string;

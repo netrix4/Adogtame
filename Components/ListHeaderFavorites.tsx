@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text, Image } from "react-native";
-import logo from "../assets/Logo.svg";
+import logo from "../assets/Logo.png";
 import React from "react";
 
 export default function ListHeaderFavorites() {

@@ -1,0 +1,256 @@
+<HTML>
+<Head>
+</Head>
+<Body>
+<div class="main-container">
+  <div class="card-element-wrapper">
+    <div class="card-element-header">
+      <h2>Serivicio HTTP</h2>
+    </div>
+    <div class="card-page-header-content" id="cardContent">
+      <p htmlFor="inputAutom">Nombre: Mario De Jesus Arias Hernandez<br></br>Matricula: 21760701</p>
+    </div>
+  </div>
+</div>
+
+</Body>
+<style>
+
+:root{
+  --card-element-header-bakcgorund-color: rgb(215, 213, 213);
+  --card-element-content-bakcgorund-color: rgb(235, 224, 224);
+  --input-height: 350px;
+}
+body{
+background:linear-gradient(to bottom, #599ee4 5%, #0565c5 100%);
+  margin: 0;
+
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family:Arial;
+}
+.main-container{
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  align-items: center;
+  max-width: 1350px;
+
+}
+.card-languages-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  height: 625px;
+}
+.card-element-wrapper{
+  margin-top: 2%;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: var(--card-element-content-bakcgorund-color);
+  width: 100%;
+
+}
+.card-element-header{
+  background-color: var(--card-element-header-bakcgorund-color);
+  align-items: flex-end;
+  padding: 10px 0;
+  border-radius: 5px 5px 0 0;
+  text-align: center;
+}
+.card-element-header > h2{
+  margin: 0;
+  font-size: x-large;
+}
+.card-element-content{
+  background-color: var(--card-element-content-bakcgorund-color);
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 32px;
+  gap: 12px;
+}
+.card-element-content > p {
+/* max-width: 100%; */
+/* max-width: 650px; */
+align-content: center;
+text-align: center;
+
+}
+
+.card-page-header-content{
+  align-content: center;
+  text-align: center;
+  font-size: 20px;
+
+}
+.card-page-ouputs-content{
+  align-content: center;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+  justify-content: center;
+
+  height: 100px;
+
+  overflow-y: scroll;
+  /* font-size: 35px; */
+}
+
+.card-page-ouputs-content > textarea {
+
+  padding: 0%;
+  width: 95%;
+  height: var(--input-height);
+  justify-content: center;
+  resize: none;
+  font-size: 20px;
+
+}
+
+.input-container{
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+
+.input-container > textarea {
+  padding: 0%;
+  width: 95%;
+  height: var(--input-height);
+  justify-content: center;
+  resize: none;
+  font-size: 20px;
+
+}
+/* .input-container > pre { */
+.compiling-feedback{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+.code-lines-counter{
+  padding: 0%;
+  margin: 0%;
+  width: 5%;
+  max-width: inherit;
+  height: var(--input-height);
+  font-size: 21px;
+
+}
+.card-element-content > button{
+box-shadow:inset 0px 1px 0px 0px #97c4fe;
+background:linear-gradient(to bottom, #2d8bf0 5%, #1e62d0 100%);
+background-color:#2d8bf0;
+border-radius:6px;
+border:1px solid #337fed;
+display:inline-block;
+cursor:pointer;
+color:#ebeaea;
+font-family:Arial;
+font-size:15px;
+font-weight:bold;
+padding:6px 24px;
+text-decoration:none;
+text-shadow:0px 1px 0px #1570cd;
+  width: 150px;
+}
+.card-element-content > button:hover {
+background:linear-gradient(to bottom, #1e62d0 5%, #2d8bf0 100%);
+background-color:#1e62d0;
+}
+.card-element-content > button:active {
+position:relative;
+top:1px;
+}
+
+
+
+.option-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.option-form > label{
+  text-align: center;
+}
+.option-form > button{
+box-shadow:inset 0px 1px 0px 0px #97c4fe;
+background:linear-gradient(to bottom, #2d8bf0 5%, #1e62d0 100%);
+background-color:#2d8bf0;
+border-radius:6px;
+border:1px solid #337fed;
+display:inline-block;
+cursor:pointer;
+color:#ebeaea;
+font-family:Arial;
+font-size:15px;
+font-weight:bold;
+padding:6px 24px;
+text-decoration:none;
+text-shadow:0px 1px 0px #1570cd;
+}
+.option-form > button:hover {
+background:linear-gradient(to bottom, #1e62d0 5%, #2d8bf0 100%);
+background-color:#1e62d0;
+}
+.option-form > button:active {
+position:relative;
+top:1px;
+}  
+
+.button-generic{
+box-shadow:inset 0px 1px 0px 0px #97c4fe;
+background:linear-gradient(to bottom, #2d8bf0 5%, #1e62d0 100%);
+background-color:#2d8bf0;
+border-radius:6px;
+border:1px solid #337fed;
+display:inline-block;
+cursor:pointer;
+color:#ebeaea;
+font-family:Arial;
+font-size:15px;
+font-weight:bold;
+padding:6px 24px;
+text-decoration:none;
+text-shadow:0px 1px 0px #1570cd;
+  width: 150px;
+}
+.button-generic:hover {
+background:linear-gradient(to bottom, #1e62d0 5%, #2d8bf0 100%);
+background-color:#1e62d0;
+}
+.button-generic:active {
+position:relative;
+top:1px;
+}  
+
+table {
+width: 100%;
+border-collapse: collapse;
+margin-bottom: 20px;
+}
+th {
+background-color: #f2f2f2; 
+text-align: left; 
+padding: 10px; 
+border: 1px solid #dddddd; 
+}
+
+td {
+padding: 10px; 
+border: 1px solid #dddddd; 
+}
+</style>
+</HTML

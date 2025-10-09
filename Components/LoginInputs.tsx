@@ -12,7 +12,7 @@ import {
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { supabase } from "../lib/supabase";
-import adogtameIcon from "../assets/Logo.svg";
+import adogtameIcon from "../assets/Logo.png";
 
 export default function LoginInputs() {
   const navigation = useNavigation();
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     width: "100%",
-  },  
+  },
   passwordEye: {
     width: 30,
     position: "absolute",

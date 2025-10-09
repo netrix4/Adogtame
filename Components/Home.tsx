@@ -112,6 +112,6 @@ const styles = StyleSheet.create({
     gap: 15,
     paddingHorizontal: Platform.OS === "android" ? "5%" : "25%",
     marginTop: Platform.OS === "android" ? "10%" : "3%",
-    paddingBottom: "1%",
+    paddingBottom: Platform.OS === "android" ? "10%" : "1%",
   },
 });

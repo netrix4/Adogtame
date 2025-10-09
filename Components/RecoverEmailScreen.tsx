@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { supabase } from "../lib/supabase"; // Ajusta la ruta si tu archivo es distinto
-import logo from "../assets/Logo.svg";
+import logo from "../assets/Logo.png";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import { Linking } from "react-native";

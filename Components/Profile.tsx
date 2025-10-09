@@ -13,7 +13,7 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { supabase } from "../lib/supabase";
 import { CommonActions, useNavigation } from "@react-navigation/native";
-import logo from "../assets/Logo.svg";
+import logo from "../assets/Logo.png";
 import { useProfileData } from "../hooks/useProfileData";
 
 export default function Profile() {
@@ -153,11 +153,11 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     alignItems: "center",
     justifyContent: "center",
-    gap: 10
+    gap: 10,
   },
   logoutText: {
     fontSize: fontSizes * 0.95,
     color: "#000",
-    fontWeight: "600"
+    fontWeight: "600",
   },
 });

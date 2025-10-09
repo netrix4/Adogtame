@@ -12,7 +12,7 @@ import React, { useState, useEffect, useRef } from "react";
 import * as Linking from "expo-linking";
 import { useNavigation } from "@react-navigation/native";
 import { supabase } from "../lib/supabase";
-import logo from "../assets/Logo.svg";
+import logo from "../assets/Logo.png";
 
 export default function ResetPassword() {
   const [newPassword, setNewPassword] = useState("");
